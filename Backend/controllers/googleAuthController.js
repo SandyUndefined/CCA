@@ -1,70 +1,89 @@
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const User = require('../models/userModel');
-const jwt = require('jsonwebtoken')
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 const maxAge = 3 * 24 * 60 * 60;
+
+// Function to create a JWT token
 const createToken = (id) => {
-  return jwt.sign({ id }, 'iitmandi', {
-    expiresIn: maxAge
+  return jwt.sign({ id }, "iitmandi", {
+    expiresIn: maxAge,
   });
 };
-let newUser;
-passport.use(new GoogleStrategy({
-  clientID: "183702925686-d8abqnknae8frlmouqckssa5s99kncsf.apps.googleusercontent.com",
-  clientSecret: "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",
-  callbackURL: '/user/auth/google/callback'
-},
-  async (accessToken, refreshToken, profile, done) => {
-    try {
-      let user = await User.findOne({ email: profile.emails[0].value });
 
-      if (user) {
-        user.firstName = profile.name.givenName;
-        user.lastName = profile.name.familyName;
-        user = await user.save();
-      } else {
-        user = await User.create({
-          firstName: profile.name.givenName,
-          lastName: profile.name.familyName,
-          email: profile.emails[0].value
+let newUser;
+
+// Configure Passport to use Google OAuth 2.0 strategy
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "/user/auth/google/callback",
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        // Find user in the database by email
+        let user = await User.findOne({
+          where: { email: profile.emails[0].value },
         });
-      }
+
+        if (user) {
+          // Update user information if already exists
+          user.firstName = profile.name.givenName;
+          user.lastName = profile.name.familyName;
+          user = await user.save();
+        } else {
+          // Create new user if doesn't exist
+          user = await User.create({
+            firstName: profile.name.givenName,
+            lastName: profile.name.familyName,
+            email: profile.emails[0].value,
+          });
+        }
         newUser = user;
-      
-      done(null, user); 
-    } catch (err) {
-      done(err);
+
+        done(null, user);
+      } catch (err) {
+        done(err);
+      }
     }
-  }
-));
+  )
+);
+
+// Serialize and deserialize user for session management
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {
-    try {
-        const user = await User.findById(id);
-        done(null, user);
-    } catch (err) {
-        done(err, null);
-    }
+  try {
+    const user = await User.findByPk(id);
+    done(null, user);
+  } catch (err) {
+    done(err, null);
+  }
 });
 
 // Controller actions
-const signin = passport.authenticate('google', { scope: ['profile', 'email'] });
+// Redirect to Google for authentication
+const signin = passport.authenticate("google", { scope: ["profile", "email"] });
 
-const signinCallback = passport.authenticate('google', { failureRedirect: '/login' });
+// Callback route after authentication
+const signinCallback = passport.authenticate("google", {
+  failureRedirect: "/login",
+});
 
+// Dashboard route after successful authentication
 const dashboard = (req, res) => {
-    const token = createToken(newUser._id);
-
-
-  res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+  // Create JWT token and set cookie
+  const token = createToken(newUser.id);
+  res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 
   res.status(201).json({
     message: "Login Successful!",
-    user: newUser
+    user: newUser,
   });
 };
 
