@@ -70,9 +70,13 @@
 
 const { DataTypes, Sequelize } = require("sequelize");
 const config = require("./config.json");
+
+const { username, password, host, database } = config.mysql;
+
 const sequelize = new Sequelize(
-  "mysql://'user':'password'@'host'/'database'"
+  `mysql://${username}:${password}@${host}/${database}`
 );
+
 
 const User = sequelize.define("User", {
   firstName: {
