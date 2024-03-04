@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Actuator Control</title>
+  <style>
+    button {
+      margin-right: 10px;
+    }
+    
+    .current-value {
+      background-color: yellow;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Actuator Control</h1>
+
+  <div id="controlPannel">
+    <div class="knobs">
+      <div id="knob1" class="knob">
+        <button onclick="updateSensor('sensor1', 'Low'); off('slider1');" class="off">Off</button>
+        <button onclick="updateSensor('sensor1', 'High'); on('slider1');" class="on">On</button>
+        <button onclick="updateSensor('sensor1', 'Auto'); auto('slider1');" class="auto">Auto</button>
+        <img src="../images/knob.png" alt="" id="slider1" class="slider" />
+      </div>
+
+      <div id="knob2" class="knob">
+        <button onclick="updateSensor('sensor2', 'Low'); off('slider2');" class="off">Off</button>
+        <button onclick="updateSensor('sensor2', 'High'); on('slider2');" class="on">On</button>
+        <button onclick="updateSensor('sensor2', 'Auto'); auto('slider2');" class="auto">Auto</button>
+        <img src="../images/knob.png" alt="" id="slider2" class="slider" />
+      </div>
+
+      <div id="knob3" class="knob">
+        <button onclick="updateSensor('sensor3', 'Low'); off('slider3');" class="off">Off</button>
+        <button onclick="updateSensor('sensor3', 'High'); on('slider3');" class="on">On</button>
+        <button onclick="updateSensor('sensor3', 'Auto'); auto('slider3');" class="auto">Auto</button>
+        <img src="../images/knob.png" alt="" id="slider3" class="slider" />
+      </div>
+    </div>
+
+    <div class="display">
+      <div id="screen">
+        <div id="section1">
+          <p>TEMPERATURE</p>
+          <p>HUMIDITY</p>
+          <p>TIMER</p>
+        </div>
+        <div id="section2">
+          <div class="digits">27.2</div>
+          <div class="digits">66</div>
+          <div class="digits">1</div>
+        </div>
+        <div id="section3">
+          <div class="check" id="power"></div>
+          <div class="check" id="error"></div>
+          <div class="check" id="fogger"></div>
+          <div class="check" id="coolingPad"></div>
+          <div class="check" id="ventilation"></div>
+          <div class="check" id="light-screen"></div>
+        </div>
+        <div id="section4">
+          <p>POWER</p>
+          <p>ERROR</p>
+          <p>FOGGER</p>
+          <p>COOLING PAD</p>
+          <p>VENTILATION</p>
+          <p>LIGHT</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="knobs">
+      <div id="knob4" class="knob">
+        <button onclick="updateSensor('sensor4', 'Low'); off('slider4');" class="off">Off</button>
+        <button onclick="updateSensor('sensor4', 'High'); on('slider4');" class="on">On</button>
+        <button onclick="updateSensor('sensor4', 'Auto'); auto('slider4');" class="auto">Auto</button>
+        <img src="../images/knob.png" alt="" id="slider4" class="slider" />
+      </div>
+
+      <div id="knob5" class="knob">
+        <button onclick="updateSensor('sensor5', 'Low'); off('slider5');" class="off">Off</button>
+        <button onclick="updateSensor('sensor5', 'High'); on('slider5');" class="on">On</button>
+        <button onclick="updateSensor('sensor5', 'Auto'); auto('slider5');" class="auto">Auto</button>
+        <img src="../images/knob.png" alt="" id="slider5" class="slider" />
+      </div>
+
+      <div id="knob6" class="knob">
+        <button onclick="updateSensor('sensor6', 'Low'); off('slider6');" class="off">Off</button>
+        <button onclick="updateSensor('sensor6', 'High'); on('slider6');" class="on">On</button>
+        <button onclick="updateSensor('sensor6', 'Auto'); auto('slider6');" class="auto">Auto</button>
+        <img src="../images/knob.png" alt="" id="slider6" class="slider" />
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function fetchSensorValues() {
+      $.ajax({
+        url: "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse2",
+        method: "GET",
+        dataType: "json",
+        success: function(data) {
+          var sensorData = data[0].plants[0].sensors;
+
+          for (var i = 1; i <= 6; i++) {
+            var sensorId = "sensor" + i;
+            var sensorValue = sensorData[sensorId.toLowerCase()];
+
+            var sensorButton = document.querySelector("#controlPannel .knobs:nth-child(" + i + ") button");
+            var sensorValueSpan = document.getElementById(sensorId + "-value");
+
+            if (sensorValueSpan) {
+              sensorValueSpan.innerText = "Current value: " + sensorValue;
+            }
+          }
+
+          var buttons = document.querySelectorAll("#controlPannel button");
+          buttons.forEach(function(button) {
+            var sensorValue = button.textContent;
+            var sensorName = button.parentNode.id.replace("knob", "sensor").toLowerCase();
+            if (sensorValue.toLowerCase() === sensorData[sensorName]) {
+              button.classList.add("current-value");
+            } else {
+              button.classList.remove("current-value");
+            }
+          });
+        },
+        error: function(xhr, status, error) {
+          console.error('Error retrieving sensor values:', error);
+        }
+      });
+    }
+
+    fetchSensorValues();
+
+    function updateSensor(sensor, value) {
+      var data = {
+        sensors: {}
+      };
+
+      $.ajax({
+        url: "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse2",
+        method: "GET",
+        dataType: "json",
+        success: function (response) {
+          var currentSensorValues = response[0].plants[0].sensors;
+
+          data.sensors = { ...currentSensorValues };
+          data.sensors[sensor] = value;
+
+          fetch('https://research.iitmandi.ac.in:8000/act/updatevalues/polyhouse2', {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          })
+            .then(response => response.json())
+            .then(result => {
+              console.log('Patch request successful', result);
+              fetchSensorValues();
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        },
+        error: function (xhr, status, error) {
+          console.error('Error retrieving sensor values:', error);
+        }
+      });
+    }
+
+    function off(slider) {
+      var sliderElement = document.getElementById(slider);
+      sliderElement.style.transform = 'rotate(-45deg)';
+    }
+
+    function on(slider) {
+      var sliderElement = document.getElementById(slider);
+      sliderElement.style.transform = 'rotate(45deg)';
+    }
+
+    function auto(slider) {
+      var sliderElement = document.getElementById(slider);
+      sliderElement.style.transform = 'rotate(0deg)';
+    }
+  </script>
+</body>
+</html>

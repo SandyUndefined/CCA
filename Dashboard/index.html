@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link
+      rel="shortcut icon"
+      href="../images/white logo.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="profile">
+        <img src="../images/profile.png" alt="" />
+        <p id= "userName">""</p>
+      </div>
+      <div id="polyNo">
+        <select name="" id="options">
+          <option value="option1">Dashboard</option>
+          <option value="option2">Polyhouse 1</option>
+          <option value="option3">Polyhouse 2</option>
+        </select>
+      </div>
+      <div id="attributes">
+        <a href="#temp">Temperature</a>
+        <a href="#humidity">Humidity</a>
+        <a href="#soilTemp">Soil Temperature</a>
+        <a href="#waterTemp">Water Temperature</a>
+        <a href="#co2">CO2</a>
+        <a href="#light">Light</a>
+        <a href="#moisture">Moisture</a>
+        <a href="#actuators">Actuators</a>
+        <a href="#pyranometer">Solar Irradiance</a>
+      </div>
+      <div id="attributes_2">
+        <a href="#temp_2">Temperature</a>
+        <a href="#humidity_2">Humidity</a>
+        <a href="#soilTemp_2">Soil Temperature</a>
+        <a href="#waterTemp_2">Water Temperature</a>
+        <a href="#co2_2">CO2</a>
+        <a href="#light_2">Light</a>
+        <a href="#moisture_2">Moisture</a>
+        <a href="#actuators_2">Actuators</a>
+        <a href="#pyranometer_2">Solar Irradiance</a>
+      </div>
+      <div class="controlPannel">
+        <p>Control Pannel</p>
+        <a href="#controlPannel" onclick="showPannel()">Polyhouse 1</a>
+        <a href="#controlPannel_2" onclick="showPannel_2()">Polyhouse 2</a>
+      </div>
+    </div>
+
+    <div class="main">
+      <nav>
+        <div class="left">
+          <img id="logo-l" src="../images/logo.png " alt="" />
+          <img id="logo-d" src="../images/white logo.png " alt="" />
+          <a href="#" id="dashboard">Dashboards</a>
+          <p>/</p>
+          <a
+            target="_blank"
+            href="https://www.canva.com/design/DAFl-x-HX70/AciH_KN62I30I3ZYvdQ2tw/view?utm_content=DAFl-x-HX70&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
+            >About</a
+          >
+          <a href="http://faculty.iitmandi.ac.in/~tushar" target="_blank"
+            >Contact</a
+          >
+          <a href="#download" onclick="dataRequest()">Data Request</a>
+        </div>
+        <div class="right">
+          <a href="../index.html">Log Out</a>
+          <div id="sun" onclick="themeChange()">
+            <img src="../images/sun.png" alt="" />
+          </div>
+          <div id="moon" onclick="themeChange()">
+            <img src="../images/moon.png" alt="" />
+          </div>
+        </div>
+      </nav>
+      <div id="map1">
+        <div class="mapScreen">
+          <div class="mapHeading">
+            <h2>Polyhouse 1 Sensor Display</h2>
+          </div>
+          <div class="mapMain">
+            <div class="mapPoly">
+              <div class="mapPoly-left">
+                <div class="map1">
+                  <a href="#moisture"
+                    ><img src="../images/soil.png" alt=""
+                  /></a>
+                  <a href="#temp"><img src="../images/air.png" alt="" /></a>
+                  <a href="#soilTemp"
+                    ><img src="../images/soil temp.png" alt=""
+                  /></a>
+                  <a href="#humidity"
+                    ><img src="../images/humidity.png" alt=""
+                  /></a>
+                  <a href="#co2"
+                    ><img src="../images/co2.png" alt="" class="small"
+                  /></a>
+                  <a href="#moisture"
+                    ><img src="../images/soil.png" alt=""
+                  /></a>
+                  <a href="#temp"><img src="../images/air.png" alt="" /></a>
+                  <a href="#soilTemp"
+                    ><img src="../images/soil temp.png" alt=""
+                  /></a>
+                  <a href="#humidity"
+                    ><img src="../images/humidity.png" alt=""
+                  /></a>
+                </div>
+                <div class="map2">
+                  <a href="#"
+                    ><img src="../images/fan.png" alt="" class="small"
+                  /></a>
+                  <a href="#"><img src="../images/fogger.png" alt="" /></a>
+                  <a href="#pyranometer"
+                    ><img src="../images/pyranometer.png" alt="" class="small"
+                  /></a>
+
+                  <a href="#"><img src="../images/fogger.png" alt="" /></a>
+                  <a href="#"><img src="../images/cooling pad.png" alt="" /></a>
+                </div>
+                <div class="map3">
+                  <a href="#moisture"
+                    ><img src="../images/soil.png" alt=""
+                  /></a>
+                  <a href="#temp"><img src="../images/air.png" alt="" /></a>
+                  <a href="#soilTemp"
+                    ><img src="../images/soil temp.png" alt=""
+                  /></a>
+                  <a href="#humidity"
+                    ><img src="../images/humidity.png" alt=""
+                  /></a>
+                  <a href="#co2"
+                    ><img src="../images/co2.png" alt="" class="small"
+                  /></a>
+                  <a href="#moisture"
+                    ><img src="../images/soil.png" alt=""
+                  /></a>
+                  <a href="#temp"><img src="../images/air.png" alt="" /></a>
+                  <a href="#soilTemp"
+                    ><img src="../images/soil temp.png" alt=""
+                  /></a>
+                  <a href="#humidity"
+                    ><img src="../images/humidity.png" alt=""
+                  /></a>
+                </div>
+                <div class="map4">
+                  <div class="map4-l">
+                    <a href="#soilTemp"
+                      ><img src="../images/soil temp.png" alt=""
+                    /></a>
+                    <a href="#soilTemp"
+                      ><img src="../images/soil temp.png" alt=""
+                    /></a>
+                    <a href="#"><img src="../images/bulb.png" alt="" /></a>
+                  </div>
+                  <div class="map4-r">
+                    <a href="#"><img src="../images/bulb.png" alt="" /></a>
+                    <a href="#soilTemp"
+                      ><img src="../images/soil temp.png" alt=""
+                    /></a>
+                    <a href="#soilTemp"
+                      ><img src="../images/soil temp.png" alt=""
+                    /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="mapPoly-right">
+                <a href="#waterTemp"
+                  ><img src="../images/water temp.png" alt=""
+                /></a>
+                <a href="#waterTemp"
+                  ><img src="../images/water temp.png" alt=""
+                /></a>
+              </div>
+            </div>
+            <div class="mapNav">
+              <div class="mapNav-images">
+                <img src="../images/soil.png" alt="" />
+                <img src="../images/air.png" alt="" />
+                <img src="../images/soil temp.png" alt="" />
+                <img src="../images/humidity.png" alt="" />
+                <img src="../images/co2.png" alt="" />
+                <img src="../images/water temp.png" alt="" />
+                <img src="../images/pyranometer.png" alt="" />
+                <img src="../images/fogger.png" alt="" />
+                <img src="../images/cooling pad.png" alt="" />
+                <img src="../images/fan.png" alt="" />
+              </div>
+              <div class="mapNav-content">
+                <p>Soil Moisture</p>
+                <p>Air Temperature</p>
+                <p>Soil Temperature</p>
+                <p>Humidity</p>
+                <p>CO2 Sensor</p>
+                <p>Water Temperature</p>
+                <p>Solar Irradiance</p>
+                <p>Fogger</p>
+                <p>Cooling Pad</p>
+                <p>Fan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="map2">
+        <div class="mapScreen">
+          <div class="mapHeading">
+            <h2>Polyhouse 2 Sensor Display</h2>
+          </div>
+          <div class="mapMain">
+            <div class="mapPoly">
+              <div class="mapPoly-left">
+                <div class="map1">
+                  <a href="#moisture_2"
+                    ><img src="../images/soil.png" alt=""
+                  /></a>
+                  <a href="#temp_2"><img src="../images/air.png" alt="" /></a>
+                  <a href="#soilTemp_2"
+                    ><img src="../images/soil temp.png" alt=""
+                  /></a>
+                  <a href="#humidity_2"
+                    ><img src="../images/humidity.png" alt=""
+                  /></a>
+                  <a href="#co2_2"
+                    ><img src="../images/co2.png" alt="" class="small"
+                  /></a>
+                  <a href="#moisture_2"
+                    ><img src="../images/soil.png" alt=""
+                  /></a>
+                  <a href="#temp_2"><img src="../images/air.png" alt="" /></a>
+                  <a href="#soilTemp_2"
+                    ><img src="../images/soil temp.png" alt=""
+                  /></a>
+                  <a href="#humidity_2"
+                    ><img src="../images/humidity.png" alt=""
+                  /></a>
+                </div>
+                <div class="map2">
+                  <a href="#"
+                    ><img src="../images/fan.png" alt="" class="small"
+                  /></a>
+                  <a href="#"><img src="../images/fogger.png" alt="" /></a>
+                  <a href="#pyranometer_2"
+                    ><img src="../images/pyranometer.png" alt="" class="small"
+                  /></a>
+
+                  <a href="#"><img src="../images/fogger.png" alt="" /></a>
+                  <a href="#"><img src="../images/cooling pad.png" alt="" /></a>
+                </div>
+                <div class="map3">
+                  <a href="#moisture_2"
+                    ><img src="../images/soil.png" alt=""
+                  /></a>
+                  <a href="#temp_2"><img src="../images/air.png" alt="" /></a>
+                  <a href="#soilTemp_2"
+                    ><img src="../images/soil temp.png" alt=""
+                  /></a>
+                  <a href="#humidity_2"
+                    ><img src="../images/humidity.png" alt=""
+                  /></a>
+                  <a href="#co2_2"
+                    ><img src="../images/co2.png" alt="" class="small"
+                  /></a>
+                  <a href="#moisture_2"
+                    ><img src="../images/soil.png" alt=""
+                  /></a>
+                  <a href="#temp_2"><img src="../images/air.png" alt="" /></a>
+                  <a href="#soilTemp_2"
+                    ><img src="../images/soil temp.png" alt=""
+                  /></a>
+                  <a href="#humidity_2"
+                    ><img src="../images/humidity.png" alt=""
+                  /></a>
+                </div>
+                <div class="map4">
+                  <div class="map4-l">
+                    <a href="#soilTemp_2"
+                      ><img src="../images/soil temp.png" alt=""
+                    /></a>
+                    <a href="#soilTemp_2"
+                      ><img src="../images/soil temp.png" alt=""
+                    /></a>
+                    <a href="#"><img src="../images/bulb.png" alt="" /></a>
+                  </div>
+                  <div class="map4-r">
+                    <a href="#"><img src="../images/bulb.png" alt="" /></a>
+                    <a href="#soilTemp_2"
+                      ><img src="../images/soil temp.png" alt=""
+                    /></a>
+                    <a href="#soilTemp_2"
+                      ><img src="../images/soil temp.png" alt=""
+                    /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="mapPoly-right">
+                <a href="#waterTemp_2"
+                  ><img src="../images/water temp.png" alt=""
+                /></a>
+                <a href="#waterTemp_2"
+                  ><img src="../images/water temp.png" alt=""
+                /></a>
+              </div>
+            </div>
+            <div class="mapNav">
+              <div class="mapNav-images">
+                <img src="../images/soil.png" alt="" />
+                <img src="../images/air.png" alt="" />
+                <img src="../images/soil temp.png" alt="" />
+                <img src="../images/humidity.png" alt="" />
+                <img src="../images/co2.png" alt="" />
+                <img src="../images/water temp.png" alt="" />
+                <img src="../images/pyranometer.png" alt="" />
+                <img src="../images/fogger.png" alt="" />
+                <img src="../images/cooling pad.png" alt="" />
+                <img src="../images/fan.png" alt="" />
+              </div>
+              <div class="mapNav-content">
+                <p>Soil Moisture</p>
+                <p>Air Temperature</p>
+                <p>Soil Temperature</p>
+                <p>Humidity</p>
+                <p>CO2 Sensor</p>
+                <p>Water Temperature</p>
+                <p>Solar Irradiance</p>
+                <p>Fogger</p>
+                <p>Cooling Pad</p>
+                <p>Fan</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Polyhouse1">
+        <div id="temp">
+          <div class="heading">
+            <h2>Temperature</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>O1T</p>
+              <div class="graph">
+                <canvas id="tempEx1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>O2T</p>
+              <div class="graph">
+                <canvas id="tempEx2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I1T</p>
+              <div class="graph">
+                <canvas id="tempIn1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I2T</p>
+              <div class="graph">
+                <canvas id="tempIn2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I3T</p>
+              <div class="graph">
+                <canvas id="tempIn3"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I4T</p>
+              <div class="graph">
+                <canvas id="tempIn4"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="humidity">
+          <div class="heading">
+            <h2>Humidity</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>O1H</p>
+              <div class="graph">
+                <canvas id="humidEx1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>O2H</p>
+              <div class="graph">
+                <canvas id="humidEx2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I1H</p>
+              <div class="graph">
+                <canvas id="humidIn1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I2H</p>
+              <div class="graph">
+                <canvas id="humidIn2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I3H</p>
+              <div class="graph">
+                <canvas id="humidIn3"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I4H</p>
+              <div class="graph">
+                <canvas id="humidIn4"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="soilTemp">
+          <div class="heading">
+            <h2>Soil Temperature</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>I1ST</p>
+              <div class="graph">
+                <canvas id="soilTempIn1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I2ST</p>
+              <div class="graph">
+                <canvas id="soilTempIn2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I3ST</p>
+              <div class="graph">
+                <canvas id="soilTempIn3"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I4ST</p>
+              <div class="graph">
+                <canvas id="soilTempIn4"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="waterTemp">
+          <div class="heading">
+            <h2>Water Temperature</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1WT</p>
+              <div class="graph">
+                <canvas id="waterTemp1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2WT</p>
+              <div class="graph">
+                <canvas id="waterTemp2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="co2">
+          <div class="heading">
+            <h2>CO2</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1CO2</p>
+              <div class="graph">
+                <canvas id="co2_1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2CO2</p>
+              <div class="graph">
+                <canvas id="co2_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="light">
+          <div class="heading">
+            <h2>Light</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1L</p>
+              <div class="graph">
+                <canvas id="light1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2L</p>
+              <div class="graph">
+                <canvas id="light2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="moisture">
+          <div class="heading">
+            <h2>Moisture</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1M</p>
+              <div class="graph">
+                <canvas id="moisture1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2M</p>
+              <div class="graph">
+                <canvas id="moisture2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>3M</p>
+              <div class="graph">
+                <canvas id="moisture3"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>4M</p>
+              <div class="graph">
+                <canvas id="moisture4"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="actuators">
+          <div class="heading">
+            <h2>Actuators</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1AC</p>
+              <div class="graph">
+                <canvas id="ac1"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2AC</p>
+              <div class="graph">
+                <canvas id="ac2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>3AC</p>
+              <div class="graph">
+                <canvas id="ac3"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>4AC</p>
+              <div class="graph">
+                <canvas id="ac4"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>5AC</p>
+              <div class="graph">
+                <canvas id="ac5"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>6AC</p>
+              <div class="graph">
+                <canvas id="ac6"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="pyranometer">
+          <div class="heading">
+            <h2>Solar Irradiance</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1SI</p>
+              <div class="graph">
+                <canvas id="pyro"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Polyhouse2">
+        <div id="temp_2">
+          <div class="heading">
+            <h2>Temperature</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>O1T</p>
+              <div class="graph">
+                <canvas id="tempEx1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>O2T</p>
+              <div class="graph">
+                <canvas id="tempEx2_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I1T</p>
+              <div class="graph">
+                <canvas id="tempIn1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I2T</p>
+              <div class="graph">
+                <canvas id="tempIn2_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I3T</p>
+              <div class="graph">
+                <canvas id="tempIn3_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I4T</p>
+              <div class="graph">
+                <canvas id="tempIn4_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="humidity_2">
+          <div class="heading">
+            <h2>Humidity</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>E1H</p>
+              <div class="graph">
+                <canvas id="humidEx1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>E2H</p>
+              <div class="graph">
+                <canvas id="humidEx2_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I1H</p>
+              <div class="graph">
+                <canvas id="humidIn1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I2H</p>
+              <div class="graph">
+                <canvas id="humidIn2_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I3H</p>
+              <div class="graph">
+                <canvas id="humidIn3_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I4H</p>
+              <div class="graph">
+                <canvas id="humidIn4_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="soilTemp_2">
+          <div class="heading">
+            <h2>Soil Temperature</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>I1ST</p>
+              <div class="graph">
+                <canvas id="soilTempIn1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I2ST</p>
+              <div class="graph">
+                <canvas id="soilTempIn2_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I3ST</p>
+              <div class="graph">
+                <canvas id="soilTempIn3_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>I4ST</p>
+              <div class="graph">
+                <canvas id="soilTempIn4_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="waterTemp_2">
+          <div class="heading">
+            <h2>Water Temperature</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1WT</p>
+              <div class="graph">
+                <canvas id="waterTemp1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2WT</p>
+              <div class="graph">
+                <canvas id="waterTemp2_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="co2_2">
+          <div class="heading">
+            <h2>CO2</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1CO2</p>
+              <div class="graph">
+                <canvas id="co2_1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2CO2</p>
+              <div class="graph">
+                <canvas id="co2_2_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="light_2">
+          <div class="heading">
+            <h2>Light</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1L</p>
+              <div class="graph">
+                <canvas id="light1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2L</p>
+              <div class="graph">
+                <canvas id="light2_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="moisture_2">
+          <div class="heading">
+            <h2>Moisture</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1M</p>
+              <div class="graph">
+                <canvas id="moisture1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2M</p>
+              <div class="graph">
+                <canvas id="moisture2_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>3M</p>
+              <div class="graph">
+                <canvas id="moisture3_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>4M</p>
+              <div class="graph">
+                <canvas id="moisture4_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="actuators_2">
+          <div class="heading">
+            <h2>Actuators</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1AC</p>
+              <div class="graph">
+                <canvas id="ac1_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>2AC</p>
+              <div class="graph">
+                <canvas id="ac2_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>3AC</p>
+              <div class="graph">
+                <canvas id="ac3_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>4AC</p>
+              <div class="graph">
+                <canvas id="ac4_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>5AC</p>
+              <div class="graph">
+                <canvas id="ac5_2"></canvas>
+              </div>
+            </div>
+            <div class="info">
+              <p>6AC</p>
+              <div class="graph">
+                <canvas id="ac6_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="pyranometer_2">
+          <div class="heading">
+            <h2>Solar Irradiance</h2>
+          </div>
+          <div class="graphs-group">
+            <div class="info">
+              <p>1SI</p>
+              <div class="graph">
+                <canvas id="pyro_2"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="controlPannel">
+        <div class="knobs">
+          <div id="knob1" class="knob">
+            <button
+              onclick="updateSensor('sensor1', 'Low'); off(slider1);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor('sensor1', 'High'); on(slider1);"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor('sensor1', 'Auto'); auto(slider1);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img src="../images/knob.png" alt="" id="slider1" class="slider" />
+          </div>
+          <div id="knob2" class="knob">
+            <button
+              onclick="updateSensor('sensor2', 'Low'); off(slider2);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor('sensor2', 'High'); on(slider2)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor('sensor2', 'Auto'); auto(slider2);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img src="../images/knob.png" alt="" id="slider2" class="slider" />
+          </div>
+          <div id="knob3" class="knob">
+            <button
+              onclick="updateSensor('sensor3', 'Low'); off(slider3);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor('sensor3', 'High'); on(slider3)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor('sensor3', 'Auto'); auto(slider3);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img src="../images/knob.png" alt="" id="slider3" class="slider" />
+          </div>
+        </div>
+        <div class="display">
+          <div id="screen">
+            <div id="section1">
+              <p>TEMPERATURE</p>
+              <p>HUMIDITY</p>
+              <p>TIMER</p>
+            </div>
+            <div id="section2">
+              <div class="digits" id="screen_temp">27.2</div>
+              <div class="digits" id="screen_humid">66</div>
+              <div class="digits">1</div>
+            </div>
+            <div id="section3">
+              <div class="check" id="power"></div>
+              <div class="check" id="error"></div>
+              <div class="check" id="fogger"></div>
+              <div class="check" id="coolingPad"></div>
+              <div class="check" id="ventilation"></div>
+              <div class="check" id="light-screen"></div>
+            </div>
+            <div id="section4">
+              <p>POWER</p>
+              <p>ERROR</p>
+              <p>FOGGER</p>
+              <p>COOLING PAD</p>
+              <p>VENTILATION</p>
+              <p>LIGHT</p>
+            </div>
+          </div>
+        </div>
+        <div class="knobs">
+          <div id="knob4" class="knob">
+            <button
+              onclick="updateSensor('sensor4', 'Low'); off(slider4);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor('sensor4', 'High'); on(slider4)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor('sensor4', 'Auto'); auto(slider4);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img src="../images/knob.png" alt="" id="slider4" class="slider" />
+          </div>
+          <div id="knob5" class="knob">
+            <button
+              onclick="updateSensor('sensor5', 'Low'); off(slider5);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor('sensor5', 'High'); on(slider5)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor('sensor5', 'Auto'); auto(slider5);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img src="../images/knob.png" alt="" id="slider5" class="slider" />
+          </div>
+          <div id="knob6" class="knob">
+            <button
+              onclick="updateSensor('sensor6', 'Low'); off(slider6);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor('sensor6', 'High'); on(slider6)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor('sensor6', 'Auto'); auto(slider6);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img src="../images/knob.png" alt="" id="slider6" class="slider" />
+          </div>
+        </div>
+      </div>
+      <div id="controlPannel_2">
+        <div class="knobs">
+          <div id="knob1_2" class="knob">
+            <button
+              onclick="updateSensor_2('sensor1', 'Low'); off(slider1_2);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor_2('sensor1', 'High'); on(slider1_2);"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor_2('sensor1', 'Auto'); auto(slider1_2);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img
+              src="../images/knob.png"
+              alt=""
+              id="slider1_2"
+              class="slider"
+            />
+          </div>
+          <div id="knob2_2" class="knob">
+            <button
+              onclick="updateSensor_2('sensor2', 'Low'); off(slider2_2);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor_2('sensor2', 'High'); on(slider2_2)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor_2('sensor2', 'Auto'); auto(slider2_2);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img
+              src="../images/knob.png"
+              alt=""
+              id="slider2_2"
+              class="slider"
+            />
+          </div>
+          <div id="knob3_2" class="knob">
+            <button
+              onclick="updateSensor_2('sensor3', 'Low'); off(slider3_2);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor_2('sensor3', 'High'); on(slider3_2)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor_2('sensor3', 'Auto'); auto(slider3_2);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img
+              src="../images/knob.png"
+              alt=""
+              id="slider3_2"
+              class="slider"
+            />
+          </div>
+        </div>
+        <div class="display">
+          <div id="screen">
+            <div id="section1">
+              <p>TEMPERATURE</p>
+              <p>HUMIDITY</p>
+              <p>TIMER</p>
+            </div>
+            <div id="section2">
+              <div class="digits" id="screen_temp">27.2</div>
+              <div class="digits" id="screen_humid">66</div>
+              <div class="digits">1</div>
+            </div>
+            <div id="section3">
+              <div class="check" id="power"></div>
+              <div class="check" id="error"></div>
+              <div class="check" id="fogger"></div>
+              <div class="check" id="coolingPad"></div>
+              <div class="check" id="ventilation"></div>
+              <div class="check" id="light-screen"></div>
+            </div>
+            <div id="section4">
+              <p>POWER</p>
+              <p>ERROR</p>
+              <p>FOGGER</p>
+              <p>COOLING PAD</p>
+              <p>VENTILATION</p>
+              <p>LIGHT</p>
+            </div>
+          </div>
+        </div>
+        <div class="knobs">
+          <div id="knob4_2" class="knob">
+            <button
+              onclick="updateSensor_2('sensor4', 'Low'); off(slider4_2);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor_2('sensor4', 'High'); on(slider4_2)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor_2('sensor4', 'Auto'); auto(slider4_2);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img
+              src="../images/knob.png"
+              alt=""
+              id="slider4_2"
+              class="slider"
+            />
+          </div>
+          <div id="knob5_2" class="knob">
+            <button
+              onclick="updateSensor_2('sensor5', 'Low'); off(slider5_2);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor_2('sensor5', 'High'); on(slider5_2)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor_2('sensor5', 'Auto'); auto(slider5_2);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img
+              src="../images/knob.png"
+              alt=""
+              id="slider5_2"
+              class="slider"
+            />
+          </div>
+          <div id="knob6_2" class="knob">
+            <button
+              onclick="updateSensor_2('sensor6', 'Low'); off(slider6_2);"
+              class="off"
+            >
+              Off
+            </button>
+            <button
+              onclick="updateSensor_2('sensor6', 'High'); on(slider6_2)"
+              class="on"
+            >
+              On
+            </button>
+            <button
+              onclick="updateSensor_2('sensor6', 'Auto'); auto(slider6_2);"
+              class="auto"
+            >
+              Auto
+            </button>
+            <img
+              src="../images/knob.png"
+              alt=""
+              id="slider6_2"
+              class="slider"
+            />
+          </div>
+        </div>
+      </div>
+      <div id="download">
+        <h2>CCA FACILITY IIT MANDI</h2>
+        <h4>Sensor Data Request</h4>
+        <p>
+          We have developed a system to monitor and analyze sensor data from
+          various environmental sensors. The system collects data from sensors
+          placed in different locations and provides real-time insights into the
+          environmental conditions.
+        </p>
+        <ul>
+          <li>
+            Real-time Data: The system continuously gathers data from the
+            sensors, providing up-to-date information on various environmental
+            attributes.
+          </li>
+          <li>
+            Sensor Integration: It supports integration with a wide range of
+            sensors, including temperature, humidity, pressure, light intensity,
+            and more.
+          </li>
+          <li>
+            Data Visualization: The collected sensor data is presented using
+            interactive charts and graphs, enabling users to easily visualize
+            and understand the trends and patterns in the environmental
+            conditions.
+          </li>
+        </ul>
+        <button id="download_btn" onclick="downloadData();">Download</button>
+        <span
+          >*Click on the button to get CSV file of the data of Polyhouse 1 and
+          Polyhouse 2 on your registered email id</span
+        >
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

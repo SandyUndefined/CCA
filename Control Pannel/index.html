@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control Pannel</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="profile">
+        <div class="profile-pic-div">
+          <img src="../images/profile.png" id="photo" />
+          <input type="file" id="file" />
+          <label for="file" id="uploadBtn"></label>
+        </div>
+        <div id="userName">
+          <p>Hari Priya</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <nav>
+        <div class="left">
+          <img id="logo-l" src="../images/logo.png " alt="" />
+          <img id="logo-d" src="../images/white logo.png " alt="" />
+          <a href="#">Dashboards</a>
+          <p>/</p>
+          <a href="../index.html">Home</a>
+          <a
+            target="_blank"
+            href="https://www.canva.com/design/DAFl-x-HX70/AciH_KN62I30I3ZYvdQ2tw/view?utm_content=DAFl-x-HX70&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
+            >About</a
+          >
+          <a href="http://faculty.iitmandi.ac.in/~tushar" target="_blank"
+            >Contact</a
+          >
+        </div>
+        <div class="right">
+          <a href="../index.html">Back</a>
+          <div id="sun" onclick="change()">
+            <img src="../images/sun.png" alt="" />
+          </div>
+          <div id="moon" onclick="change()">
+            <img src="../images/moon.png" alt="" />
+          </div>
+          <img
+            id="notify"
+            src="../images/notify.png"
+            style="width: 30px; height: 30px; margin: auto 0; cursor: pointer"
+          />
+        </div>
+      </nav>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

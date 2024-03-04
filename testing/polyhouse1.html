@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Actuator Control</title>
+  <style>
+    button {
+      margin-right: 10px;
+    }
+    
+    .current-value {
+      background-color: yellow;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Actuator Control</h1>
+  <div id="sensors">
+    <div>
+      <h2>Sensor 1</h2>
+      <button onclick="updateSensor('sensor1', 'Low')">Low</button>
+      <button onclick="updateSensor('sensor1', 'High')">High</button>
+      <button onclick="updateSensor('sensor1', 'Auto')">Auto</button>
+      <span id="sensor1-value"></span>
+    </div>
+    <div>
+      <h2>Sensor 2</h2>
+      <button onclick="updateSensor('sensor2', 'Low')">Low</button>
+      <button onclick="updateSensor('sensor2', 'High')">High</button>
+      <button onclick="updateSensor('sensor2', 'Auto')">Auto</button>
+      <span id="sensor2-value"></span>
+    </div>
+    <div>
+      <h2>Sensor 3</h2>
+      <button onclick="updateSensor('sensor3', 'Low')">Low</button>
+      <button onclick="updateSensor('sensor3', 'High')">High</button>
+      <button onclick="updateSensor('sensor3', 'Auto')">Auto</button>
+      <span id="sensor3-value"></span>
+    </div>
+    <div>
+      <h2>Sensor 4</h2>
+      <button onclick="updateSensor('sensor4', 'Low')">Low</button>
+      <button onclick="updateSensor('sensor4', 'High')">High</button>
+      <button onclick="updateSensor('sensor4', 'Auto')">Auto</button>
+      <span id="sensor4-value"></span>
+    </div>
+    <div>
+      <h2>Sensor 5</h2>
+      <button onclick="updateSensor('sensor5', 'Low')">Low</button>
+      <button onclick="updateSensor('sensor5', 'High')">High</button>
+      <button onclick="updateSensor('sensor5', 'Auto')">Auto</button>
+      <span id="sensor5-value"></span>
+    </div>
+    <div>
+      <h2>Sensor 6</h2>
+      <button onclick="updateSensor('sensor6', 'Low')">Low</button>
+      <button onclick="updateSensor('sensor6', 'High')">High</button>
+      <button onclick="updateSensor('sensor6', 'Auto')">Auto</button>
+      <span id="sensor6-value"></span>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Function to fetch sensor values and update the UI
+    function fetchSensorValues() {
+      $.ajax({
+        url: "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse1",
+        method: "GET",
+        dataType: "json",
+        success: function(data) {
+          var sensorData = data[0].plants[0].sensors;
+
+          // Update the buttons and values based on the sensor values
+          for (var i = 1; i <= 6; i++) {
+            var sensorId = "sensor" + i;
+            var sensorValue = sensorData[sensorId.toLowerCase()];
+
+            var sensorButton = document.querySelector("#sensors div:nth-child(" + i + ") button");
+            var sensorValueSpan = document.getElementById(sensorId + "-value");
+
+            sensorButton.classList.remove("high", "low", "auto");
+            sensorButton.classList.add(sensorValue.toLowerCase());
+
+            if (sensorValueSpan) {
+              sensorValueSpan.innerText = "Current value: " + sensorValue;
+            }
+          }
+
+          // Change color of buttons with the same value as the current value
+          var buttons = document.querySelectorAll("#sensors button");
+          buttons.forEach(function(button) {
+            var sensorValue = button.textContent;
+            var sensorName = button.parentNode.querySelector("h2").textContent.toLowerCase();
+            if (sensorValue.toLowerCase() === sensorData[sensorName]) {
+              button.classList.add("current-value");
+            } else {
+              button.classList.remove("current-value");
+            }
+          });
+        },
+        error: function(xhr, status, error) {
+          console.error('Error retrieving sensor values:', error);
+        }
+      });
+    }
+
+    // Make initial call to fetch sensor values and update the UI
+    fetchSensorValues();
+
+    function updateSensor(sensor, value) {
+  var data = {
+    sensors: {}
+  };
+
+  // Fetch the current sensor values first
+  $.ajax({
+    url: "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse1",
+    method: "GET",
+    dataType: "json",
+    success: function (response) {
+      var currentSensorValues = response[0].plants[0].sensors;
+
+      // Update the specific sensor with the new value
+      data.sensors = { ...currentSensorValues };
+      data.sensors[sensor] = value;
+
+      // Send the updated sensor values through the PATCH request
+      fetch('https://research.iitmandi.ac.in:8000/act/updatevalues/polyhouse1', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => response.json())
+        .then(result => {
+          console.log('Patch request successful', result);
+          // Perform any additional actions or update the UI as needed
+
+          // Fetch updated sensor values and update the UI again
+          fetchSensorValues();
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Handle error scenarios
+        });
+    },
+    error: function (xhr, status, error) {
+      console.error('Error retrieving sensor values:', error);
+    }
+  });
+}
+
+  </script>
+</body>
+</html>
