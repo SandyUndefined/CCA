@@ -1,6 +1,9 @@
 {
-  "host": "process.env.HOSTNAME",
-  "user": "process.env.USERNAME",
-  "password": "process.env.PASSWORD",
-  "database": "process.env.DATABASE"
+  "mysql": 
+  {
+    "username": "cca",
+    "host": "research.iitmandi.ac.in",
+    "password": "CCA@9876%&",
+    "database": "cca"
+  }
 }

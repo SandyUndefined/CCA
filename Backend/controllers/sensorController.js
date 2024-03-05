@@ -1,4 +1,4 @@
-const Sensor = require("../models/Sensor"); // Assuming you've created the Sensor model
+const Sensor = require("../models/sensorModel"); // Assuming you've created the Sensor model
 
 // Retrieve data for a specific plant
 exports.getData = async (req, res) => {

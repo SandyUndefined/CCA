@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
-const userModel = require("../models/User");
-const sensorModel = require("../models/Sensor"); 
+const userModel = require("../models/userModel");
+const sensorModel = require("../models/sensorModel"); 
 const { createObjectCsvWriter } = require("csv-writer");
 const fs = require("fs");
 

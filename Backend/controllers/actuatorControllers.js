@@ -1,4 +1,4 @@
-const Actuator = require("../models/Actuator"); // Assuming you've created the Actuator model
+const Actuator = require("../models/actuatorModel"); // Assuming you've created the Actuator model
 
 exports.updateValue = async (req, res) => {
   try {

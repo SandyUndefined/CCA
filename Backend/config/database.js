@@ -14,7 +14,7 @@
 // module.exports = db;
 
 const mysql = require("mysql2");
-const config = require("./config.json");
+const config = require("../config.json");
 
 // Create a connection pool
 const pool = mysql.createPool({

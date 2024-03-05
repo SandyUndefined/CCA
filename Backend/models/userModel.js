@@ -69,7 +69,7 @@
 // module.exports = userModel
 
 const { DataTypes, Sequelize } = require("sequelize");
-const config = require("./config.json");
+const config = require("../config.json");
 
 const { username, password, host, database } = config.mysql;
 
