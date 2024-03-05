@@ -1,6 +1,6 @@
 {
-  "host": "research.iitmandi.ac.in",
-  "user": "cca",
-  "password": "CCA@9876%&",
-  "database": "cca"
+  "host": "process.env.HOSTNAME",
+  "user": "process.env.USERNAME",
+  "password": "process.env.PASSWORD",
+  "database": "process.env.DATABASE"
 }
