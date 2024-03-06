@@ -73,8 +73,13 @@ const config = require("../config.json");
 
 const { username, password, host, database } = config.mysql;
 
+const encodedUsername = encodeURIComponent(username);
+const encodedPassword = encodeURIComponent(password);
+const encodedHost = encodeURIComponent(host);
+const encodedDatabase = encodeURIComponent(database);
+
 const sequelize = new Sequelize(
-  `mysql://${username}:${password}@${host}/${database}`
+  `mysql://${encodedUsername}:${encodedPassword}@${encodedHost}:3306/${encodedDatabase}`
 );
 
 

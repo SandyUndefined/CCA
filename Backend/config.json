@@ -1,9 +1,9 @@
 {
   "mysql": 
   {
-    "username": "cca",
-    "host": "research.iitmandi.ac.in",
-    "password": "CCA@9876%&",
+    "username": "root",
+    "host": "localhost",
+    "password": "",
     "database": "cca"
   }
 }
