@@ -5,9 +5,16 @@ const passport = require('passport');
 const { signin, signinCallback, dashboard } = require("../controllers/googleAuthController");
 const downloadData = require("../controllers/nodemailerController");
 
+//
 router.get('/allUsers', getAllUsers);
+
+//
 router.post('/signup', signUp);
 router.post('/login', login);
+router.get('/',  function (req, res, next) {
+    res.send("welcome!")
+});
+
 router.delete('/delete', deleteAll)
 
 
@@ -21,4 +28,5 @@ router.get('/auth/google/callback', signinCallback, dashboard);
 router.use(protectRoute)
 router.get('/userProfile',getUserProfile);
 router.get('/download',downloadData);
+
 module.exports = router;

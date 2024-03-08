@@ -46,6 +46,7 @@ async function getAllUsers(req, res) {
 // Controller to sign up a new user
 async function signUp(req, res) {
   try {
+    console.log("user signup is working inside userController.js")
     let body = req.body;
     let newUser = await User.create(body);
     const token = createToken(newUser.id);
@@ -64,6 +65,7 @@ async function signUp(req, res) {
 
 // Controller to log in a user
 async function login(req, res) {
+  console.debug("User login is working inside userController.js");
   try {
     let body = req.body;
     let user = await User.findOne({ where: { email: body.email } });

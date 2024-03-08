@@ -18,10 +18,10 @@ const config = require("../config.json");
 
 // Create a connection pool
 const pool = mysql.createPool({
-  host: config.host,
-  user: config.user,
-  password: config.password,
-  database: config.database,
+  host: config.mysql.host,
+  user: config.mysql.username,
+  password: config.mysql.password,
+  database: config.mysql.database,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
