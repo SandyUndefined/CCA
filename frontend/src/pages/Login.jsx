@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { LOGIN, GOOGLE_AUTH_URL } from '../server/config';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 function Login() {
-const submitForm = async (event) => {
+  const [fieldsError, setFieldsError] = useState(false); // State to track empty fields error
+  const [passwordError, setPasswordError] = useState(false); // State to track password field empty error
+
+  const submitForm = async (event) => {
     event.preventDefault();
+
+    // Check if any field is left empty
+    if (event.target.email.value === '') {
+      setFieldsError(true);
+      return;
+    }
+
+    if (event.target.password.value === '') {
+      setPasswordError(true);
+      return;
+    }
+
     try {
       // Submit login request
       const response = await axios.post(LOGIN, {
@@ -47,12 +64,6 @@ const submitForm = async (event) => {
     // Display an alert for login failure
     alert("Login failed. Please check your credentials.");
   };
-
-  function handleLoggedInUser(email) {
-    // Use the logged-in user's email as needed
-    console.log(email);
-    // Continue with further logic or redirect to another page
-  }
 
   return (
     <div className="content">
@@ -115,6 +126,26 @@ const submitForm = async (event) => {
         </div>
       </div>
       <div id="right"></div>
+      {/* Alert for filling login fields */}
+      {fieldsError && (
+        <div className="alert-container">
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity="error" onClose={() => setFieldsError(false)}>
+              Please fill in email field.
+            </Alert>
+          </Stack>
+        </div>
+      )}
+      {/* Alert for filling out the password field */}
+      {passwordError && (
+        <div className="alert-container">
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity="error" onClose={() => setPasswordError(false)}>
+              Please fill out the password field.
+            </Alert>
+          </Stack>
+        </div>
+      )}
     </div>
   );
 }
