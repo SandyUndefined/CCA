@@ -118,6 +118,7 @@ function PolyhouseMap1() {
                 <img src="https://www.pngmart.com/files/23/Cooling-Logo-PNG-Image.png" alt="" />
                 <img src="https://cdn-icons-png.flaticon.com/512/445/445016.png" alt="" />
               </div>
+              
               <div class="mapNav-content">
                 <p>Soil Moisture</p>
                 <p>Air Temperature</p>

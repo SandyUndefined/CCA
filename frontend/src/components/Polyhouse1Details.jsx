@@ -260,6 +260,7 @@ function Polyhouse1Details() {
               <canvas id="ac5"></canvas>
             </div>
           </div>
+         
           <div className="info">
             <p>6AC</p>
             <div className="graph">

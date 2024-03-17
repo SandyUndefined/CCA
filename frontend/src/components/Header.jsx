@@ -7,7 +7,8 @@ function Header() {
   const [active, setActive] = useState("nav__menu");
   const [toggleIcon, setToggleIcon] = useState("nav__toggler");
 
-   const navToggle = () => {
+   
+  const navToggle = () => {
     active === "nav__menu" ? setActive("nav__menu navb__active") : setActive("nav__menu");
 
     //toggler icon  

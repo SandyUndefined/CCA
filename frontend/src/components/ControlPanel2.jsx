@@ -138,6 +138,7 @@ function ControlPanel2() {
         </div>
         {/* Knob 6 */}
         <div id="knob6_2" className="knob">
+          
           <button onClick={() => updateSensor2('sensor6', 'Low')} className="off">
             Off
           </button>

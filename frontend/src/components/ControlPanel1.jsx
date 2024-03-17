@@ -8,6 +8,7 @@ function ControlPanel1() {
       sensors: {}
     };
 
+  
     fetch(GET_SENSOR_VALUES_URL)
       .then(response => response.json())
       .then(response => {
