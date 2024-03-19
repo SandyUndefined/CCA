@@ -6,12 +6,14 @@ function ControlPanel2() {
     console.log(`Updating ${sensor} to ${value}`);
   };
 
+  
   const toggleSlider2 = (sliderId) => {
     const slider = document.getElementById(sliderId);
     slider.classList.toggle('off');
     slider.classList.toggle('on');
   };
 
+ 
   const auto2 = (sliderId) => {
     // Define the functionality to set the sensor to Auto mode for control panel 2
     console.log(`Setting ${sliderId} to Auto mode`);
@@ -31,6 +33,8 @@ function ControlPanel2() {
   };
 
   return (
+
+
     <div id="controlPannel_2">
       <div className="knobs">
         {/* Knob 1 */}
@@ -44,7 +48,7 @@ function ControlPanel2() {
           <button onClick={() => updateSensor2('sensor1', 'Auto')} className="auto">
             Auto
           </button>
-          <img src="../images/knob.png" alt="" id="slider1_2" className="slider off" />
+          <img src="https://clipground.com/images/knobs-clipart-7.jpg" alt="" id="slider1_2" className="slider" />
         </div>
         {/* Knob 2 */}
         <div id="knob2_2" className="knob">
@@ -57,7 +61,7 @@ function ControlPanel2() {
           <button onClick={() => updateSensor2('sensor2', 'Auto')} className="auto">
             Auto
           </button>
-          <img src="../images/knob.png" alt="" id="slider2_2" className="slider off" />
+          <img src="https://clipground.com/images/knobs-clipart-7.jpg" alt="" id="slider2_2" className="slider" />
         </div>
         {/* Knob 3 */}
         <div id="knob3_2" className="knob">
@@ -70,7 +74,7 @@ function ControlPanel2() {
           <button onClick={() => updateSensor2('sensor3', 'Auto')} className="auto">
             Auto
           </button>
-          <img src="../images/knob.png" alt="" id="slider3_2" className="slider off" />
+          <img src="https://clipground.com/images/knobs-clipart-7.jpg" alt="" id="slider3_2" className="slider" />
         </div>
       </div>
       {/* Display */}
@@ -94,7 +98,7 @@ function ControlPanel2() {
             <div className="check" id="ventilation"></div>
             <div className="check" id="light-screen"></div>
           </div>
-          <div id="section4">
+          <div className='cp-p' id="section4">
             <p>POWER</p>
             <p>ERROR</p>
             <p>FOGGER</p>
@@ -117,7 +121,7 @@ function ControlPanel2() {
           <button onClick={() => updateSensor2('sensor4', 'Auto')} className="auto">
             Auto
           </button>
-          <img src="../images/knob.png" alt="" id="slider4_2" className="slider off" />
+          <img src="https://clipground.com/images/knobs-clipart-7.jpg" alt="" id="slider4_2" className="slider " />
         </div>
         {/* Knob 5 */}
         <div id="knob5_2" className="knob">
@@ -130,10 +134,11 @@ function ControlPanel2() {
           <button onClick={() => updateSensor2('sensor5', 'Auto')} className="auto">
             Auto
           </button>
-          <img src="../images/knob.png" alt="" id="slider5_2" className="slider off" />
+          <img src="https://clipground.com/images/knobs-clipart-7.jpg" alt="" id="slider5_2" className="slider " />
         </div>
         {/* Knob 6 */}
         <div id="knob6_2" className="knob">
+          
           <button onClick={() => updateSensor2('sensor6', 'Low')} className="off">
             Off
           </button>
@@ -143,11 +148,21 @@ function ControlPanel2() {
           <button onClick={() => updateSensor2('sensor6', 'Auto')} className="auto">
             Auto
           </button>
-          <img src="../images/knob.png" alt="" id="slider6_2" className="slider off" />
+          <img src="https://clipground.com/images/knobs-clipart-7.jpg" alt="" id="slider6_2" className="slider" />
         </div>
       </div>
     </div>
+
+
+
+
+
+
+
+
   );
+
+
 }
 
 export default ControlPanel2;
