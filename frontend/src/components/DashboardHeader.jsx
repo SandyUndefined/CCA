@@ -31,8 +31,8 @@ function DashboardHeader() {
         document.getElementById("logo-l").style.display = "block";
         document.getElementById("logo-d").style.display = "none";
         document.documentElement.setAttribute("data-theme", "light");
-        mapbg1.style.backgroundImage = "url('../images/map\ light\ bg.png')"
-        mapbg2.style.backgroundImage = "url('../images/map\ light\ bg.png')"
+        mapbg1.style.backgroundImage = "url('../assets/images/map/ light/ bg.png')"
+        mapbg2.style.backgroundImage = "url('../assets/images/map/ light/ bg.png')"
 
     }
     else {
@@ -42,16 +42,16 @@ function DashboardHeader() {
         document.getElementById("logo-l").style.display = "none";
         document.getElementById("logo-d").style.display = "block";
         document.documentElement.setAttribute("data-theme", "dark");
-        mapbg1.style.backgroundImage = "url('../images/map\ bg\ dark.png')"
-        mapbg2.style.backgroundImage = "url('../images/map\ bg\ dark.png')"
+        mapbg1.style.backgroundImage = "url('../assets/images/map/ bg/ dark.png')"
+        mapbg2.style.backgroundImage = "url('../assets/images/map/bg/ dark.png')"
     }
   };
 
   return (
     <nav>
       <div className="left">
-        <img id="logo-l" src="../images/logo.png" alt="" />
-        <img id="logo-d" src="../images/white logo.png" alt="" />
+        <img id="logo-l" src="../assets/images/logo.png" alt="" />
+        <img id="logo-d" src="../assets/images/white logo.png" alt="" />
         <a href="#" id="dashboard">Dashboards</a>
         <p>/</p>
         <a
@@ -64,10 +64,10 @@ function DashboardHeader() {
       <div className="right">
         <a href="../index.html">Log Out</a>
         <div id="sun" onClick={themeChange}>
-          <img src="../images/sun.png" alt="" />
+          <img src="../assets/images/sun.png" alt="" />
         </div>
         <div id="moon" onClick={themeChange}>
-          <img src="../images/moon.png" alt="" />
+          <img src="../assets/images/moon.png" alt="" />
         </div>
       </div>
     </nav>
