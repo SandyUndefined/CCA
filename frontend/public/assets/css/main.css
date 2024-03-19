@@ -35,6 +35,11 @@ a{
 
 }
 
+.navb img
+{
+  height: fit-content;
+}
+
 .navb a{
     text-decoration: none;
     color: white;
