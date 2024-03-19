@@ -11,64 +11,65 @@ function PolyhouseMap2() {
           <div className="mapPoly">
             <div className="mapPoly-left">
               <div className="map1">
-                <a href="#moisture_2"><img src="../images/soil.png" alt="" /></a>
-                <a href="#temp_2"><img src="../images/air.png" alt="" /></a>
-                <a href="#soilTemp_2"><img src="../images/soil temp.png" alt="" /></a>
-                <a href="#humidity_2"><img src="../images/humidity.png" alt="" /></a>
-                <a href="#co2_2"><img src="../images/co2.png" alt="" className="small" /></a>
-                <a href="#moisture_2"><img src="../images/soil.png" alt="" /></a>
-                <a href="#temp_2"><img src="../images/air.png" alt="" /></a>
-                <a href="#soilTemp_2"><img src="../images/soil temp.png" alt="" /></a>
-                <a href="#humidity_2"><img src="../images/humidity.png" alt="" /></a>
+                <a href="#moisture_2"><img src="../assets/images/soil.png" alt="" /></a>
+                <a href="#moisture_2"><img src="../assets/images/soil.png" alt="" /></a>
+                <a href="#temp_2"><img src="../assets/images/air.png" alt="" /></a>
+                <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
+                <a href="#humidity_2"><img src="../assets/images/humidity.png" alt="" /></a>
+                <a href="#co2_2"><img src="../assets/images/co2.png" alt="" className="small" /></a>
+                <a href="#moisture_2"><img src="../assets/images/soil.png" alt="" /></a>
+                <a href="#temp_2"><img src="../assets/images/air.png" alt="" /></a>
+                <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
+                <a href="#humidity_2"><img src="../assets/images/humidity.png" alt="" /></a>
               </div>
               <div className="map2">
-                <a href="#"><img src="../images/fan.png" alt="" className="small" /></a>
-                <a href="#"><img src="../images/fogger.png" alt="" /></a>
-                <a href="#pyranometer_2"><img src="../images/pyranometer.png" alt="" className="small" /></a>
-                <a href="#"><img src="../images/fogger.png" alt="" /></a>
-                <a href="#"><img src="../images/cooling pad.png" alt="" /></a>
+                <a href="#"><img src="../assets/images/fan.png" alt="" className="small" /></a>
+                <a href="#"><img src="../assets/images/fogger.png" alt="" /></a>
+                <a href="#pyranometer_2"><img src="../assets/images/pyranometer.png" alt="" className="small" /></a>
+                <a href="#"><img src="../assets/images/fogger.png" alt="" /></a>
+                <a href="#"><img src="../assets/images/cooling pad.png" alt="" /></a>
               </div>
               <div className="map3">
-                <a href="#moisture_2"><img src="../images/soil.png" alt="" /></a>
-                <a href="#temp_2"><img src="../images/air.png" alt="" /></a>
-                <a href="#soilTemp_2"><img src="../images/soil temp.png" alt="" /></a>
-                <a href="#humidity_2"><img src="../images/humidity.png" alt="" /></a>
-                <a href="#co2_2"><img src="../images/co2.png" alt="" className="small" /></a>
-                <a href="#moisture_2"><img src="../images/soil.png" alt="" /></a>
-                <a href="#temp_2"><img src="../images/air.png" alt="" /></a>
-                <a href="#soilTemp_2"><img src="../images/soil temp.png" alt="" /></a>
-                <a href="#humidity_2"><img src="../images/humidity.png" alt="" /></a>
+                <a href="#moisture_2"><img src="../assets/images/soil.png" alt="" /></a>
+                <a href="#temp_2"><img src="../assets/images/air.png" alt="" /></a>
+                <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
+                <a href="#humidity_2"><img src="../assets/images/humidity.png" alt="" /></a>
+                <a href="#co2_2"><img src="../assets/images/co2.png" alt="" className="small" /></a>
+                <a href="#moisture_2"><img src="../assets/images/soil.png" alt="" /></a>
+                <a href="#temp_2"><img src="../assets/images/air.png" alt="" /></a>
+                <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
+                <a href="#humidity_2"><img src="../assets/images/humidity.png" alt="" /></a>
               </div>
               <div className="map4">
                 <div className="map4-l">
-                  <a href="#soilTemp_2"><img src="../images/soil temp.png" alt="" /></a>
-                  <a href="#soilTemp_2"><img src="../images/soil temp.png" alt="" /></a>
-                  <a href="#"><img src="../images/bulb.png" alt="" /></a>
+                  <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
+                  <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
+                  <a href="#"><img src="../assets/images/bulb.png" alt="" /></a>
                 </div>
                 <div className="map4-r">
-                  <a href="#"><img src="../images/bulb.png" alt="" /></a>
-                  <a href="#soilTemp_2"><img src="../images/soil temp.png" alt="" /></a>
-                  <a href="#soilTemp_2"><img src="../images/soil temp.png" alt="" /></a>
+                  <a href="#"><img src="../assets/images/bulb.png" alt="" /></a>
+                  <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
+                  <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
                 </div>
               </div>
             </div>
             <div className="mapPoly-right">
-              <a href="#waterTemp_2"><img src="../images/water temp.png" alt="" /></a>
-              <a href="#waterTemp_2"><img src="../images/water temp.png" alt="" /></a>
+              <a href="#waterTemp_2"><img src="../assets/images/water temp.png" alt="" /></a>
+              <a href="#waterTemp_2"><img src="../assets/images/water temp.png" alt="" /></a>
             </div>
           </div>
           <div className="mapNav">
             <div className="mapNav-images">
-              <img src="../images/soil.png" alt="" />
-              <img src="../images/air.png" alt="" />
-              <img src="../images/soil temp.png" alt="" />
-              <img src="../images/humidity.png" alt="" />
-              <img src="../images/co2.png" alt="" />
-              <img src="../images/water temp.png" alt="" />
-              <img src="../images/pyranometer.png" alt="" />
-              <img src="../images/fogger.png" alt="" />
-              <img src="../images/cooling pad.png" alt="" />
-              <img src="../images/fan.png" alt="" />
+              <img src="../assets/images/soil.png" alt="" />
+              <img src="../assets/images/air.png" alt="" />
+              <img src="../assets/images/soil temp.png" alt="" />
+              <img src="../assets/images/humidity.png" alt="" />
+              <img src="../assets/images/co2.png" alt="" />
+              <img src="../assets/images/water temp.png" alt="" />
+              <img src="../assets/images/pyranometer.png" alt="" />
+              <img src="../assets/images/fogger.png" alt="" />
+              <img src="../assets/images/cooling pad.png" alt="" />
+              <img src="../assets/images/fan.png" alt="" />
             </div>
             <div className="mapNav-content">
               <p>Soil Moisture</p>
