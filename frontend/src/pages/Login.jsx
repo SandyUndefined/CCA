@@ -14,7 +14,6 @@ const submitForm = async (event) => {
       }, {
         withCredentials: true,
       });
-      
 
       // Handle successful login
       handleSuccessfulLogin(response.data.user);
