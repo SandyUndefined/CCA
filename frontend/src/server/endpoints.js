@@ -1,3 +1,4 @@
+
 // font api  endpoints
 
 export const FONT_ONE = "https://fonts.googleapis.com"
@@ -23,9 +24,12 @@ export const DOWNLOAD_DATA = 'localhost:8000/user/download';
 
 // polyhouse endpoints
 
+
 export const POLYHOUSE_GET= "localhost:8000/act/getvalues/polyhouse1";
 export const POLYHOUSE_GET_TWO = "localhost:8000/act/getvalues/polyhouse2";
+
 export const POLYHOUSE_UPDATE = 'localhost:8000/act/updatevalues/polyhouse1';
 export const POLYHOUSE_UPDATE_TWO = "localhost:8000/act/updatevalues/polyhouse2";
+
 export const POLYHOUSE_ONE_SENSOR = 'localhost:8000/sensor/polyhouse1/data';
 export const POLYHOUSE_TWO_SENSOR = 'localhost:8000/sensor/polyhouse2/data';
