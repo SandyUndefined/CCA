@@ -3,10 +3,10 @@ import React from 'react';
 function Polyhouse1Details() {
   return (
     <div id="Polyhouse1">
-      <div id="temp">
-        <div className="heading">
+      <div className='temp-sec' id="temp">
+        {/* <div className="heading"> */}
           <h2>Temperature</h2>
-        </div>
+        {/* </div> */}
         <div className="graphs-group">
           <div className="info">
             <p>O1T</p>
@@ -46,10 +46,12 @@ function Polyhouse1Details() {
           </div>
         </div>
       </div>
-      <div id="humidity">
-        <div className="heading">
+      
+      
+      <div className='humidity-sec' id="humidity">
+        {/* <div className="heading"> */}
           <h2>Humidity</h2>
-        </div>
+        {/* </div> */}
         <div className="graphs-group">
           <div className="info">
             <p>O1H</p>
@@ -89,10 +91,12 @@ function Polyhouse1Details() {
           </div>
         </div>
       </div>
-      <div id="soilTemp">
-        <div className="heading">
+
+
+      <div className='soiltemp-sec' id="soilTemp">
+        {/* <div className="heading"> */}
           <h2>Soil Temperature</h2>
-        </div>
+        {/* </div> */}
         <div className="graphs-group">
           <div className="info">
             <p>I1ST</p>
@@ -120,10 +124,12 @@ function Polyhouse1Details() {
           </div>
         </div>
       </div>
-      <div id="waterTemp">
-        <div className="heading">
+
+
+      <div className='watertemp-sec' id="waterTemp">
+        {/* <div className="heading"> */}
           <h2>Water Temperature</h2>
-        </div>
+        {/* </div> */}
         <div className="graphs-group">
           <div className="info">
             <p>1WT</p>
@@ -139,10 +145,12 @@ function Polyhouse1Details() {
           </div>
         </div>
       </div>
-      <div id="co2">
-        <div className="heading">
+      
+      
+      <div className='co2-sec' id="co2">
+        {/* <div className="heading"> */}
           <h2>CO2</h2>
-        </div>
+        {/* </div> */}
         <div className="graphs-group">
           <div className="info">
             <p>1CO2</p>
@@ -158,10 +166,12 @@ function Polyhouse1Details() {
           </div>
         </div>
       </div>
-      <div id="light">
-        <div className="heading">
+
+
+      <div className='light-sec' id="light">
+        {/* <div className="heading"> */}
           <h2>Light</h2>
-        </div>
+        {/* </div> */}
         <div className="graphs-group">
           <div className="info">
             <p>1L</p>
@@ -177,10 +187,12 @@ function Polyhouse1Details() {
           </div>
         </div>
       </div>
-      <div id="moisture">
-        <div className="heading">
+      
+      
+      <div className='moisture-sec' id="moisture">
+        {/* <div className="heading"> */}
           <h2>Moisture</h2>
-        </div>
+        {/* </div> */}
         <div className="graphs-group">
           <div className="info">
             <p>1M</p>
@@ -208,10 +220,15 @@ function Polyhouse1Details() {
           </div>
         </div>
       </div>
-      <div id="actuators">
-        <div className="heading">
+
+
+     
+      
+      <div className='actuators-sec' id="actuators">
+        {/* <div className="heading"> */}
           <h2>Actuators</h2>
-        </div>
+        {/* </div> */}
+        
         <div className="graphs-group">
           <div className="info">
             <p>1AC</p>
@@ -243,6 +260,7 @@ function Polyhouse1Details() {
               <canvas id="ac5"></canvas>
             </div>
           </div>
+         
           <div className="info">
             <p>6AC</p>
             <div className="graph">
@@ -251,16 +269,22 @@ function Polyhouse1Details() {
           </div>
         </div>
       </div>
-      <div id="pyranometer">
-        <div className="heading">
+
+
+      <div className='pyra-sec' id="pyranometer">
+        {/* <div className="heading"> */}
           <h2>Solar Irradiance</h2>
-        </div>
+        {/* </div> */}
         <div className="graphs-group">
           <div className="info">
             <p>1SI</p>
-            <div className="graph">
+           
+           
+           
+           
+            {/* <div className="graph">
               <canvas id="pyro"></canvas>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
