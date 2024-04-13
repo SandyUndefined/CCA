@@ -1,27 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { LOGIN, GOOGLE_AUTH_URL } from '../server/config';
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 function Login() {
-  const [fieldsError, setFieldsError] = useState(false); // State to track empty fields error
-  const [passwordError, setPasswordError] = useState(false); // State to track password field empty error
-
-  const submitForm = async (event) => {
+const submitForm = async (event) => {
     event.preventDefault();
-
-    // Check if any field is left empty
-    if (event.target.email.value === '') {
-      setFieldsError(true);
-      return;
-    }
-
-    if (event.target.password.value === '') {
-      setPasswordError(true);
-      return;
-    }
-
     try {
       // Submit login request
       const response = await axios.post(LOGIN, {
@@ -65,12 +49,18 @@ function Login() {
     alert("Login failed. Please check your credentials.");
   };
 
+  function handleLoggedInUser(email) {
+    // Use the logged-in user's email as needed
+    console.log(email);
+    // Continue with further logic or redirect to another page
+  }
+
   return (
     <div className="content">
       <div id="left">
         <div className="left-content">
           <h2>Welcome Back</h2>
-          <p>Login into your account</p>
+          <p>Login To Your account</p>
           <div className="row">
             <div className="col-md-3">
               <a
@@ -90,7 +80,7 @@ function Login() {
                   height="30px"
                   style={{ marginBottom: '3px', marginRight: '5px' }}
                   alt="Google sign-in"
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+                  src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
                 />
                 Google
               </a>
@@ -100,7 +90,7 @@ function Login() {
             <p>or continue with</p>
           </div>
           <form onSubmit={submitForm}>
-            <input type="email" placeholder="Email" id="email" name="email" />
+            <input type="email" placeholder="email" id="email" name="email" />
             <input
               type="password"
               placeholder="Password"
@@ -120,34 +110,15 @@ function Login() {
 
           <div className="redirect">
             <p>
-              Don't have an account? <span><a href="">Register</a></span>
+              Don't have an account? <span><a href="../Registration">Register</a></span>
             </p>
           </div>
         </div>
       </div>
       <div id="right"></div>
-      {/* Alert for filling login fields */}
-      {fieldsError && (
-        <div className="alert-container">
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            <Alert severity="error" onClose={() => setFieldsError(false)}>
-              Please fill in email field.
-            </Alert>
-          </Stack>
-        </div>
-      )}
-      {/* Alert for filling out the password field */}
-      {passwordError && (
-        <div className="alert-container">
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            <Alert severity="error" onClose={() => setPasswordError(false)}>
-              Please fill out the password field.
-            </Alert>
-          </Stack>
-        </div>
-      )}
     </div>
   );
 }
 
 export default Login;
+
