@@ -49,9 +49,10 @@ function PolyhouseMap1() {
                   <a href="#"><img src="../assets/images/bulb.png" alt="" /></a>
                   <a href="#soilTemp"><img src="../assets/images/soil temp.png" alt="" /></a>
                   <a href="#soilTemp"><img src="../assets/images/soil temp.png" alt="" /></a>
+
                 </div>
               </div>
-            </div>
+  
             <div className="mapPoly-right">
               <a href="#waterTemp"><img src="../assets/images/water temp.png" alt="" /></a>
               <a href="#waterTemp"><img src="../assets/images/water temp.png" alt="" /></a>
@@ -81,11 +82,13 @@ function PolyhouseMap1() {
               <p>Fogger</p>
               <p>Cooling Pad</p>
               <p>Fan</p>
+
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 

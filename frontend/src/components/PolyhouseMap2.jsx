@@ -2,6 +2,8 @@ import React from 'react';
 
 function PolyhouseMap2() {
   return (
+  
+
     <div id="map2">
       <div className="mapScreen">
         <div className="mapHeading">
@@ -50,9 +52,10 @@ function PolyhouseMap2() {
                   <a href="#"><img src="../assets/images/bulb.png" alt="" /></a>
                   <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
                   <a href="#soilTemp_2"><img src="../assets/images/soil temp.png" alt="" /></a>
+
                 </div>
               </div>
-            </div>
+            
             <div className="mapPoly-right">
               <a href="#waterTemp_2"><img src="../assets/images/water temp.png" alt="" /></a>
               <a href="#waterTemp_2"><img src="../assets/images/water temp.png" alt="" /></a>
@@ -86,7 +89,6 @@ function PolyhouseMap2() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
