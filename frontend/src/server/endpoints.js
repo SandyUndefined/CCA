@@ -6,7 +6,6 @@ export const FONT_TWO = "https://fonts.gstatic.com"
 
 
 // login and registeration endpoints
-
 export const LOGIN = "http://localhost:8000/user/login"
 export const REGISTRATION = "http://localhost:8000/user/signup"
 
