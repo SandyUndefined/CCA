@@ -64,7 +64,7 @@ function DashboardSidebar() {
   return (
     <div className="sidebar">
       <div className="profile">
-        <img src="../images/profile.png" alt="" />
+        <img src="./assets/images/profile.png" alt="" />
         <p id="userName">{/* You can dynamically set the username here */}</p>
       </div>
       <div id="polyNo">
