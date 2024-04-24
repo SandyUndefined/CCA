@@ -89,6 +89,10 @@ function PolyhouseMap2() {
           </div>
         </div>
       </div>
+      </div>
+      </div>
+
+
   );
 }
 

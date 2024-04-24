@@ -81,12 +81,14 @@ function PolyhouseMap1() {
               <p>Solar Irradiance</p>
               <p>Fogger</p>
               <p>Cooling Pad</p>
+              <br></br>
               <p>Fan</p>
 
               </div>
             </div>
           </div>
         </div>
+      </div>
       </div>
     
   );

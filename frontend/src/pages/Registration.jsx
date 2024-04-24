@@ -62,7 +62,7 @@ function Registration() {
 
 
   return (
-    <div className="center">
+    <div className="center-reg">
       <div className="content">
         <h2>Set up your account</h2>
         <form onSubmit={submitForm}>
