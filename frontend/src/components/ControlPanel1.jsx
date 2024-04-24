@@ -163,8 +163,9 @@ function ControlPanel1() {
           On
         </button>
         <button onClick={() => updateSensor('sensor3', 'Auto')} className="auto">
-        </button>
           Auto
+        </button>
+          
 
       <img src="https://clipground.com/images/knobs-clipart-7.jpg" alt="" id="slider3" className="slider" />
     </div>

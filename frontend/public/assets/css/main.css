@@ -244,7 +244,7 @@ display: none;
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.graph {
+/* .graph {
   padding: 10px;
   border-radius: 30px;
   background: var(--graphBg);
@@ -254,7 +254,7 @@ display: none;
   margin-bottom: 20px;
   height: 290px;
   width: 480px;
-}
+} */
 .info {
   font-family: poppins;
   text-align: left;
@@ -397,7 +397,7 @@ nav {
   padding: 0px 12px 0px 10px;
 }
 /* ///////////////// CONTROL PANNEL ///////////////// */
-#controlPannel,#controlPannel_2 {
+/* #controlPannel,#controlPannel_2 {
   height: 80%;
   width: 70%;
   margin: 30px 110px;
@@ -579,6 +579,12 @@ margin-bottom: 10px;
 #download span{
   font-size: 0.8rem;
 }
+ */
+
+
+
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -613,7 +619,12 @@ a{
     align-items: center;
     justify-content: space-around;
     height: 8vh;
-    background: rgb(213, 162, 66);
+    /* background: rgb(213, 162, 66); */
+    background: transparent;
+  
+    
+
+
 
 }
 
@@ -676,7 +687,9 @@ transition: 0.4s ease-in;
         right: 0;
         width: 50%;
         height: 93vh;
-        background:  rgb(213, 162, 66);       
+        /* background:  rgb(213, 162, 66);     
+           */
+           background: #476d17;
         flex-direction: column;
         transform: translateX(100%);
         transition: 0.5s ease-in;
@@ -795,12 +808,14 @@ img:hover
     color: black;
     font-size: 14px;
   }
-    color: #201e1e;
+
+
+    /* color: #201e1e;
   }
   .left img {
     width: 100px;
     height: 80.16px;
-  }
+  } */
 
   .right {
     flex: 1;
@@ -920,7 +935,7 @@ border-radius: 0%;
 
 }
 
-.controlPannel p
+/* .controlPannel p
 {
     background: rgb(213, 162, 66);
     font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
@@ -932,9 +947,12 @@ border-radius: 0%;
     margin-top: 30px;
     border-radius: 60%;
 
-}
+} */
 
-.controlPannel a{
+
+
+
+/* .controlPannel a{
 background-color: black;
 color: rgb(213, 162, 66);
 display: flex;
@@ -949,8 +967,18 @@ margin-top: 10px;
 text-decoration: none;
 
 
-}
+} */
+
+
+
+
+
+
+
+
 .cp-p1
+
+
 {
     padding-top: 5.5px;
 }
@@ -1025,6 +1053,11 @@ p
 .temp-sec , .humidity-sec, .soiltemp-sec , .watertemp-sec, .co2-sec , .light-sec, .moisture-sec, .actuators-sec, .pyra-sec
 {
     padding-top: 50px;
+    padding-left: 600px;
+    background-image: url('https://th.bing.com/th/id/R.b8d09a8c544142cc34aec65b0d1dbc6a?rik=cvgDKlcSIgBtbw&riu=http%3a%2f%2fhdwpro.com%2fwp-content%2fuploads%2f2016%2f05%2fBest-Green-Backgrounds.jpeg&ehk=HcSpNILOVFPZ3DGtcjBWhzOHl4%2bj74O3UU1b5yP7Y5s%3d&risl=&pid=ImgRaw&r=0');
+    background-repeat: no-repeat;
+    
+
    
 }
 
@@ -1058,7 +1091,10 @@ p
     display: flex;
     flex-direction: row;
     margin-top: 100px;
-    justify-content: center;
+    justify-content: left;
+    margin-right: 500px;
+    
+    
 }
 
 .graphs-group p {
@@ -1071,6 +1107,7 @@ p
     width: fit-content;
     border: 3px solid black;
     border-radius: 15px;
+    
     
 }
 
@@ -1103,15 +1140,15 @@ p
     margin-left: 15%;
   }
   #map1,#map2{
-    height: 100vh;
+    height: 80vh;
     display: flex;
-    justify-content: center;
+    justify-content: right;
     background-size: cover;
-    width: 75%;
+    width: 65%;
     background-image: url('https://wallpapers.com/images/hd/plain-yellow-background-sz8rral13llcyqn8.jpg');
     border-radius: 10%;
     border: 2px solid black;
-    margin-left: 170px;
+    margin-left: 300px;
     margin-top: 30px;
   }
   #map2{
@@ -1204,12 +1241,16 @@ p
     display: flex;
     flex-direction: column;
     justify-content:space-around ;
+    margin-left: 100px;
   }
   .mapNav-content{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-bottom: 500px;
     
+  
+        
     
   }
 
@@ -1219,6 +1260,9 @@ p
 
 .mapNav-content p{
     color: black;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: medium;
     
   }
 
@@ -1242,6 +1286,7 @@ p
     margin: 30px 200px;
     display: none;
     background: #2f3030;
+    
     
     
     
@@ -1315,6 +1360,7 @@ p
     box-shadow: 4px 5px 30px 0px #202020;
     margin: 50px auto;
     display: flex;
+    
   }
   #section1 {
     display: flex;
@@ -1446,6 +1492,7 @@ p
     background: rgb(213, 162, 66);
     border-radius: 10%;
     border: solid 2px black;
+    padding-left: 50px;
   }
 
 
@@ -1461,6 +1508,37 @@ p
     
 
   }
+
+  .data-d 
+  {
+    margin-left: 50px;
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   .right a,
   p {
@@ -1482,8 +1560,23 @@ p
   .content {
     display: flex;
     width: 100%;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    margin-left:400px;
+    margin-top: 100px;
+    background-color: beige;
+    border-radius: 10%;
+    margin-right: -150px;
+  
+    
   }
+
+ .content h2{
+  color: coral;
+ }
+
+
+  
   #left {
     width: 50%;
   }
@@ -1506,6 +1599,7 @@ p
     /* border: 2px solid pink; */
     margin: auto;
     padding: 20px;
+    margin-left: 190px;
   }
   h2 {
     color: #000;
@@ -1559,7 +1653,7 @@ p
       #bcd2de;
     border: none;
     padding: 10px;
-    margin: 20px;
+    margin: 20px; 
   }
   input[type="email"]:focus,
   input[type="password"]:focus
@@ -1611,7 +1705,7 @@ p
     letter-spacing: 0.02456rem;
   }
   .redirect span a {
-    color: #eeeef3;
+    color: green;
   }
   input[type="submit"]:hover {
     cursor: pointer;
@@ -1628,3 +1722,38 @@ p
       width: 100%;
     }
   }
+
+
+
+
+
+  .content-home {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    
+  
+    
+  }
+
+
+  .content-home p {
+    color: #fff;
+    font-size: 1rem;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.9rem;
+    margin: 10px 0;
+  }
+
+
+
+
+
+
+
+
+
+
+  
