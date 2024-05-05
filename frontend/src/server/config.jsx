@@ -1,4 +1,6 @@
 // export const SERVER_URL = "https://research.iitmandi.ac.in:8000";
+// export const LOGIN = "https://research.iitmandi.ac.in:8000/user/login";
+// export const REGISTRATION = "https://research.iitmandi.ac.in:8000/user/signup"
 // export const GET_SENSOR_VALUES_URL = "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse1";
 // export const UPDATE_SENSOR_VALUES_URL = "https://research.iitmandi.ac.in:8000/act/updatevalues/polyhouse1";
 // export const GOOGLE_AUTH_URL = "https://research.iitmandi.ac.in:8000/user/auth/google";
@@ -11,7 +13,7 @@
 // export const POLYHOUSE_ONE_SENSOR = 'https://research.iitmandi.ac.in:8000/sensor/polyhouse1/data';
 // export const POLYHOUSE_TWO_SENSOR = 'https://research.iitmandi.ac.in:8000/sensor/polyhouse2/data';
 
-export const LOGIN = "http://localhost:8000/user/login"
+export const LOGIN = "http://localhost:8000/user/login";
 export const SERVER_URL = "http://localhost:8000";
 export const REGISTRATION = "http://localhost:8000/user/signup"
 export const GET_SENSOR_VALUES_URL = "localhost:8000/act/getvalues/polyhouse1";

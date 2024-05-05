@@ -1,4 +1,4 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require("express");
 const https = require("https");
 const http = require("http");
@@ -48,13 +48,13 @@ app.use("/act", actuatorRoutes);
 
 // HTTPS Configuration
 const options = {
-  cert: fs.readFileSync("./SSL.crt"),
-  key: fs.readFileSync("./SSL.key"),
-  ca: fs.readFileSync("./SSL_Bundle.crt"),
+  cert: fs.readFileSync("SSL.crt"),
+  key: fs.readFileSync("SSL.key"),
+  ca: fs.readFileSync("SSL_Bundle.crt"),
 };
 
 // Create HTTPS server
-const server = https.createServer(options, app);
+// const server = https.createServer(options, app);
 
 const localServer = http.createServer(options, app);
 

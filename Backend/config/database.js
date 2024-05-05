@@ -19,6 +19,7 @@ const config = require("../config.json");
 // Create a connection pool
 const pool = mysql.createPool({
   host: config.mysql.host,
+  port: config.mysql.port,
   user: config.mysql.username,
   password: config.mysql.password,
   database: config.mysql.database,
@@ -34,6 +35,7 @@ pool.getConnection((err, connection) => {
     return;
   }
   console.log("Connected to MySQL as id", connection.threadId);
+  connection.release();
 });
 
 module.exports = pool.promise();
