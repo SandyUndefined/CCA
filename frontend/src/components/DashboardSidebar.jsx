@@ -1,4 +1,6 @@
 import React from 'react';
+import PolyhouseMap1 from './PolyhouseMap1'; 
+import PolyhouseMap2 from './PolyhouseMap2';
 
 function DashboardSidebar() {
   const showPannel = () => {
@@ -64,14 +66,14 @@ function DashboardSidebar() {
   return (
     <div className="sidebar">
       <div className="profile">
-        <img src="../images/profile.png" alt="" />
+        <img src="./assets/images/profile.png" alt="" />
         <p id="userName">{/* You can dynamically set the username here */}</p>
       </div>
       <div id="polyNo">
         <select name="" id="options">
           <option value="option1">Dashboard</option>
-          <option value="option2">Polyhouse 1</option>
-          <option value="option3">Polyhouse 2</option>
+          <option value="option2" onClick={PolyhouseMap1}>Polyhouse 1</option>
+          <option value="option3" onClick={PolyhouseMap2} >Polyhouse 2</option>
         </select>
       </div>
       <div id="attributes">
@@ -97,9 +99,9 @@ function DashboardSidebar() {
         <a href="#pyranometer_2">Solar Irradiance</a>
       </div>
       <div className="controlPannel">
-        <p>Control Panel</p>
-        <a href="#controlPannel" onClick={showPannel}>Polyhouse 1</a>
-        <a href="#controlPannel_2" onClick={showPannel_2}>Polyhouse 2</a>
+        <p>Control Panel</p> 
+        <a  className='cp-p1' href="#controlPannel" onClick={showPannel}>Polyhouse 1</a>
+        <a className='cp-p2' href="#controlPannel_2" onClick={showPannel_2}>Polyhouse 2</a>
       </div>
     </div>
   );

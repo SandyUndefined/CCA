@@ -40,7 +40,7 @@ function Home() {
             <div className="heading">
               <h1>Climate Controlled Agriculture</h1>
             </div>
-            <div className="content">
+            <div className="content-home">
               <p>
                 This innovative system offers numerous advantages for sustainable
                 and efficient farming. With precision monitoring and real-time
