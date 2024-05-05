@@ -12,7 +12,8 @@
     "nodemailer": "^6.9.3",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
-    "sequelize": "^6.37.1"
+    "sequelize": "^6.37.1",
+    "winston": "^3.13.0"
   },
   "name": "newserverapp",
   "version": "1.0.0",

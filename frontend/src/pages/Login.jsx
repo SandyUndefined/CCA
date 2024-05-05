@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { LOGIN, GOOGLE_AUTH_URL } from '../server/config';
-import { Auth0Provider } from '@auth0/auth0-react';
+// import { Auth0Provider } from '@auth0/auth0-react';
 
 function Login() {
 const submitForm = async (event) => {
