@@ -11,7 +11,7 @@ COPY package.json ./
 RUN npm install
 
 # Copy the rest of the application code
-COPY frontend/build/ .
+COPY . .
 
 # ------------------- Stage 2: Final Stage ------------------------------
 FROM node:20-slim
