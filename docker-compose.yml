@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  mysql:
+    container_name: mysql
+    image: mysql/mysql-server:latest
+    ports:
+      - "3306:3306"
+
+  backend:
+    container_name: backend
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - "3000:3000"
+
+  # redis:
+  #   container_name: redis
+  #   restart: unless-stopped
+  #   image: redis:7.0.5-alpine 
+  #   expose:
+  #       - 6379
+  #   depends_on:
+  #     - mongodb
