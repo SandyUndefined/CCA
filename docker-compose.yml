@@ -8,9 +8,9 @@ services:
 
   backend:
     container_name: backend
-    build: ./backend
+    build: ./Backend
     env_file:
-      - ./backend/.env
+      - ./Backend/.env
     ports:
       - "8000:8000"
     depends_on:
