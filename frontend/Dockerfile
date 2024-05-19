@@ -29,4 +29,4 @@ COPY --from=frontend-builder /app .
 EXPOSE 3000
 
 # Define the default command to run the application in development mode
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
