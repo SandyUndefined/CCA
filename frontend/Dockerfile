@@ -5,7 +5,7 @@ FROM node:20 AS frontend-builder
 WORKDIR /app
 
 # Copy the package.json and package-lock.json for dependency installation
-COPY package.json ./
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
@@ -29,4 +29,4 @@ COPY --from=frontend-builder /app .
 EXPOSE 3000
 
 # Define the default command to run the application in development mode
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
