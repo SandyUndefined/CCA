@@ -158,26 +158,6 @@ logger.log({
 
 // google auth
 
-// // const express = require("express");
-// // const passport = require("passport");
-// // const session = require("express-session");
-// // const cookieParser = require("cookie-parser");
-// const { signin, signinCallback, dashboard } = require("./controllers/googleAuthController");
-
-// // // // const app = express();
-
-// app.use(cookieParser());
-// app.use(session({ secret: 'your_secret_key', resave: false, saveUninitialized: true }));
-// // app.use(passport.initialize());
-// // app.use(passport.session());
-
-// app.get("/user/auth/google", signin);
-// app.get("/user/auth/google/callback", signinCallback, dashboard);
-
-// // app.listen(8000, () => {
-// //   console.log("Server running on http://localhost:8000");
-// // });
-
 
 
 
