@@ -75,7 +75,6 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-
 // Controller actions
 // Redirect to Google for authentication
 const signin = passport.authenticate("google", { scope: ["profile", "email"] });
