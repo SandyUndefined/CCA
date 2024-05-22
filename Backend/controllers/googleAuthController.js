@@ -22,6 +22,8 @@ const createToken = (id) => {
 
 let newUser;
 
+
+
 // Configure Passport to use Google OAuth 2.0 strategy
 passport.use(
   new GoogleStrategy(
