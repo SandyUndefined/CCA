@@ -36,9 +36,9 @@ function Dashboard() {
     <ControlPanel1/>
     <ControlPanel2/>
 
-    <div className="main">
+    <div className="main-d">
       <div id="download">
-        <h2>CCA FACILITY IIT MANDI</h2>
+        <h2  className='data-d'>CCA FACILITY IIT MANDI</h2>
         <h4>Sensor Data Request</h4>
         <p>
           We have developed a system to monitor and analyze sensor data from
