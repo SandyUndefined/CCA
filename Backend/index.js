@@ -93,7 +93,6 @@ const logger = winston.createLogger({
 
 
 
-
 logger.info('Log files');
 
 logger.error('Something Went Wrong', {error: new Error('Something went Wrong')});
