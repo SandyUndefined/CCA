@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/userModel");
@@ -7,7 +15,7 @@ const maxAge = 3 * 24 * 60 * 60;
 
 // Function to create a JWT token
 const createToken = (id) => {
-  return jwt.sign({ id }, "iitmandi", {
+  return jwt.sign({ id }, process.env.JWT_SECRET || "iitmandi", {
     expiresIn: maxAge,
   });
 };
@@ -18,9 +26,9 @@ let newUser;
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/user/auth/google/callback",
+      clientID: "212921215842-r9tscro7r0oh3gmuffja65gcc4c8um92.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL:  "http://localhost:8000/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
