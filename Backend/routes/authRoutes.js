@@ -8,5 +8,4 @@ router.get("http://localhost:8000/user/auth/google/callback", googleAuthControll
 
 
 
-
 module.exports = router;
