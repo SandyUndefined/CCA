@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { SERVER_URL } from '../server/config';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import PolyhouseMap1 from '../components/PolyhouseMap1';
@@ -9,11 +8,12 @@ import Polyhouse1Details from '../components/Polyhouse1Details';
 import Polyhouse2Details from '../components/Polyhouse2Details';
 import ControlPanel1 from '../components/ControlPanel1';
 import ControlPanel2 from '../components/ControlPanel2';
+require('dotenv').config()
 
 function Dashboard() {
   const downloadData = () => {
     console.log("DOWNLOAD :)");
-    axios.get(`${SERVER_URL}/user/download`, {
+    axios.get(`${process.env.BACKEND_URL}/user/download`, {
       withCredentials: true,
     })
     .then(function (response) {

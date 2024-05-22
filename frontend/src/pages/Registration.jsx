@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { REGISTRATION } from '../server/config';
+require('dotenv').config()
 
 function Registration() {
   const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ function Registration() {
   const submitForm = async (event) => {
   event.preventDefault();
   try {
-    const response = await fetch(`${REGISTRATION}`, {
+    const response = await fetch(`${process.env.BACKEND_URL}/user/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

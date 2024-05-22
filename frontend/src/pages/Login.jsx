@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { LOGIN, GOOGLE_AUTH_URL } from '../server/config';
+require('dotenv').config()
 // import { Auth0Provider } from '@auth0/auth0-react';
 
 function Login() {
@@ -8,12 +8,12 @@ const submitForm = async (event) => {
     event.preventDefault();
     try {
       // Submit login request
-      const response = await axios.post(LOGIN, {
-        email: event.target.email.value,
-        password: event.target.password.value,
-      }, {
-        withCredentials: true,
-      });
+      const response = await axios.post(`${process.env.BACKEND_URL}/login`, {
+      email: event.target.email.value,
+      password: event.target.password.value,
+      },{
+      withCredentials: true,
+    });
 
       // Handle successful login
       handleSuccessfulLogin(response.data.user);
@@ -65,7 +65,7 @@ const submitForm = async (event) => {
             <div className="col-md-3">
               <a
                 className="btn btn-outline-dark"
-                href={GOOGLE_AUTH_URL}
+                href={`${process.env.BACKEDN_URL}/auth/google`}
                 role="button"
                 style={{
                   textTransform: 'none',
@@ -98,7 +98,7 @@ const submitForm = async (event) => {
               id="password"
             />
             <div className="forgot">
-              <a href="">Forgot Password</a>
+              <a href={`${process.env.BACKEDN_URL}/user/forgot-password`}>Forgot Password</a>
             </div>
             <input
               type="submit"

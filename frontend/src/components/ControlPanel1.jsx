@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { POLYHOUSE_GET,GET_SENSOR_VALUES_URL, UPDATE_SENSOR_VALUES_URL } from '../server/config';
+require('dotenv').config()
 
 function ControlPanel1() {
 
@@ -9,7 +9,7 @@ function ControlPanel1() {
     };
 
   
-    fetch(GET_SENSOR_VALUES_URL)
+    fetch(`${process.env.BACKEND_URL}/act/getvalues/polyhouse1`)
       .then(response => response.json())
       .then(response => {
         var currentSensorValues = response[0].plants[0].sensors;
@@ -17,7 +17,7 @@ function ControlPanel1() {
         data.sensors = { ...currentSensorValues };
         data.sensors[sensor] = value;
 
-        fetch(UPDATE_SENSOR_VALUES_URL, {
+        fetch(`${process.env.BACKEND_URL}/act/updatevalues/polyhouse1`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function ControlPanel1() {
   };
 
   const fetchSensorValues = () => {
-    fetch(POLYHOUSE_GET)
+    fetch(`${process.env.BACKEND_URL}/act/getvalues/polyhouse1`)
       .then(response => response.json())
       .then(data => {
         var sensorData = data[0].plants[0].sensors;

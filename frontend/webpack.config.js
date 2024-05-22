@@ -1,0 +1,48 @@
+// webpack.config.js
+const Dotenv = require("dotenv-webpack");
+const path = require("path");
+
+module.exports = {
+  entry: "./src/index.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  plugins: [new Dotenv()],
+  resolve: {
+    fallback: {
+      buffer: require.resolve("buffer/"),
+      os: require.resolve("os-browserify/browser"),
+      crypto: require.resolve("crypto-browserify"),
+      stream: require.resolve("stream-browserify"),
+      vm: require.resolve("vm-browserify"),
+    },
+    extensions: [".js", ".jsx"],
+  },
+  devServer: {
+    publicPath: "/dist/",
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+    compress: true,
+    port: 3000,
+  },
+};
