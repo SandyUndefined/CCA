@@ -8,12 +8,12 @@ import Polyhouse1Details from '../components/Polyhouse1Details';
 import Polyhouse2Details from '../components/Polyhouse2Details';
 import ControlPanel1 from '../components/ControlPanel1';
 import ControlPanel2 from '../components/ControlPanel2';
-require('dotenv').config()
+import BACKEND_URL from '../../cofig';
 
 function Dashboard() {
   const downloadData = () => {
     console.log("DOWNLOAD :)");
-    axios.get(`${process.env.BACKEND_URL}/user/download`, {
+    axios.get(`${BACKEND_URL}/user/download`, {
       withCredentials: true,
     })
     .then(function (response) {

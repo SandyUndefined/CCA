@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-require('dotenv').config()
+import BACKEND_URL from '../../cofig';
 // import { Auth0Provider } from '@auth0/auth0-react';
 
 function Login() {
@@ -8,7 +8,7 @@ const submitForm = async (event) => {
     event.preventDefault();
     try {
       // Submit login request
-      const response = await axios.post(`${process.env.BACKEND_URL}/login`, {
+      const response = await axios.post(`${BACKEND_URL}/login`, {
       email: event.target.email.value,
       password: event.target.password.value,
       },{
@@ -65,7 +65,7 @@ const submitForm = async (event) => {
             <div className="col-md-3">
               <a
                 className="btn btn-outline-dark"
-                href={`${process.env.BACKEDN_URL}/auth/google`}
+                href={`${BACKEND_URL}/auth/google`}
                 role="button"
                 style={{
                   textTransform: 'none',
@@ -98,7 +98,7 @@ const submitForm = async (event) => {
               id="password"
             />
             <div className="forgot">
-              <a href={`${process.env.BACKEDN_URL}/user/forgot-password`}>Forgot Password</a>
+              <a href={`${BACKEND_URL}/user/forgot-password`}>Forgot Password</a>
             </div>
             <input
               type="submit"

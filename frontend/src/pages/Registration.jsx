@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-require('dotenv').config()
-
+import BACKEND_URL from '../../cofig';
 function Registration() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -19,7 +18,7 @@ function Registration() {
   const submitForm = async (event) => {
   event.preventDefault();
   try {
-    const response = await fetch(`${process.env.BACKEND_URL}/user/signup`, {
+    const response = await fetch(`${BACKEND_URL}/user/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
