@@ -1,51 +1,62 @@
 require('dotenv').config();
 const express = require("express");
-const https = require("https");
-const http = require("http");
+const bodyParser = require("body-parser");
 const fs = require("fs");
 const app = express();
-const PORT = 8000;
-const db = require("./config/database");
+const passport = require("passport");
+const PORT = process.env.PORT || 8000;
 const userRoutes = require("./routes/userRoutes");
 const sensorRoutes = require("./routes/sensorRoutes");
 const actuatorRoutes = require("./routes/actuatorRoutes");
 const session = require("express-session");
- const passport = require("passport");
+const authService = require("./services/authService");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const csv = require("csv-parser");
+require("./utils/passport-setup"); 
 
-app.use(cookieParser());
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
-
-const corsOptions = {
-  origin: "http://13.235.128.105:3000",
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-
-
+// Configure session management
 app.use(
   session({
-    secret: "IITMANDI",
+    secret: "replace_with_a_real_secret", // Ensure this is a secure secret and ideally environment-specific
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    cookie: { secure: true, httpOnly: true }, // Consider using secure: true in production
   })
 );
+
+// Initialize passport for authentication
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.json());
+
+// Body parser middleware to parse JSON payloads
+app.use(bodyParser.json());
+app.use(cors());
+
+// Google OAuth routes
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res) => {
+    // Successful authentication, issue token and redirect to the home page.
+    const token = authService.generateToken(req.user);
+    res.cookie("postitgooglejwt", token, { httpOnly: true }); // Send JWT in HTTP-only cookie
+    res
+      .status(201)
+      .json({ success: true, message: "Google Auth Success!" });
+    // res.redirect("{process.env.FRONTEND_URL}/dashboard"); // Adjust redirect as necessary // Send response code to frontend
+  }
+);
 
 app.use("/sensor", sensorRoutes);
 app.use("/user", userRoutes);
 app.use("/act", actuatorRoutes);
-
+app.get("/", (req, res) => {
+  res.json({ message: "CCA API is working..." });
+});
 // HTTPS Configuration
 const options = {
   cert: fs.readFileSync("SSL.crt"),
@@ -53,18 +64,8 @@ const options = {
   ca: fs.readFileSync("SSL_Bundle.crt"),
 };
 
-// Create HTTPS server
-// const server = https.createServer(options, app);
 
-const localServer = http.createServer(options, app);
-
-localServer.listen(PORT, () => {
-  console.log(`API listening on PORT ${PORT}`);
-});
-
-// server.listen(PORT, () => {
-//   console.log(`API listening on PORT ${PORT}`);
-// });
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
 

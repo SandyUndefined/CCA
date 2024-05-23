@@ -1,11 +1,18 @@
-const nodemailer = require("nodemailer");
-const userModel = require("../models/userModel");
-const sensorModel = require("../models/sensorModel"); 
+const sgMail = require("@sendgrid/mail");
+const User = require("../services/userService");
+const Sensor = require("../models/sensorModel");
 const { createObjectCsvWriter } = require("csv-writer");
 const fs = require("fs");
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 async function sendSensorDataAsCSV(data, email) {
   try {
+    if (!data || data.length === 0) {
+      console.error("No data to process.");
+      throw new Error("No data to process.");
+    }
+
     const plants = {};
 
     // Group data by plantId
@@ -73,10 +80,6 @@ async function sendSensorDataAsCSV(data, email) {
             title: "External Humidity Sensor 2",
           },
           {
-            id: "humidity.external.Sensor3",
-            title: "External Humidity Sensor 3",
-          },
-          {
             id: "soilTemperature.internal.Sensor1",
             title: "Internal Soil Temperature Sensor 1",
           },
@@ -140,14 +143,6 @@ async function sendSensorDataAsCSV(data, email) {
           item.data.soilTemperature.internal.Sensor3,
         "soilTemperature.internal.Sensor4":
           item.data.soilTemperature.internal.Sensor4,
-        "soilTemperature.internal.Sensor5":
-          item.data.soilTemperature.internal.Sensor5,
-        "soilTemperature.internal.Sensor6":
-          item.data.soilTemperature.internal.Sensor6,
-        "soilTemperature.internal.Sensor7":
-          item.data.soilTemperature.internal.Sensor7,
-        "soilTemperature.internal.Sensor8":
-          item.data.soilTemperature.internal.Sensor8,
         "pyranometer.Sensor1": item.data.pyranometer.Sensor1,
         "waterTemperature.Sensor1": item.data.waterTemperature.Sensor1,
         "waterTemperature.Sensor2": item.data.waterTemperature.Sensor2,
@@ -169,34 +164,30 @@ async function sendSensorDataAsCSV(data, email) {
 
       // Write CSV data for the current plant
       await csvWriter.writeRecords(csvData);
+      console.log(`CSV file for plantId ${plantId} created successfully.`);
 
-      // Configure Nodemailer transporter
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "process.env.EMAIL_USER",
-          pass: "process.env.EMAIL_USER",
-        },
-      });
-
-      const mailOptions = {
-        from: "sender@example.com",
+      // Configure SendGrid email
+      const msg = {
         to: email,
+        from: process.env.SENDGRID_VERIFIED_SENDER_EMAIL,
         subject: `${plantId} - Sensor Data CSV`,
         text: `Please find the attached CSV file with the sensor data for ${plantId}.`,
         html: `<p>Please find the attached CSV file with the sensor data for ${plantId}.</p>`,
         attachments: [
           {
+            content: fs.readFileSync(`${plantId}_data.csv`).toString("base64"),
             filename: `${plantId}_data.csv`,
-            path: `${plantId}_data.csv`,
+            type: "text/csv",
+            disposition: "attachment",
           },
         ],
       };
-
-      const info = await transporter.sendMail(mailOptions);
-      console.log("Email sent:", info.response);
+      console.log(`Sending email to ${email} for plantId ${plantId}.`);
+      await sgMail.send(msg);
+      console.log(`Email sent to ${email} for plantId ${plantId}.`);
 
       fs.unlinkSync(`${plantId}_data.csv`);
+      console.log(`CSV file for plantId ${plantId} deleted successfully.`);
     }
   } catch (error) {
     console.error("Failed to convert data to CSV and send email:", error);
@@ -206,15 +197,14 @@ async function sendSensorDataAsCSV(data, email) {
   }
 }
 
-async function downloadData(req, res) {
+
+async function downloadData(userId, req, res) {
   try {
-    const id = req.body.id;
-    const user = await userModel.findByPk(id); 
+    const user = await User.findUserById(userId);
     console.log(user.email);
     const email = user.email;
-
-    const data = await sensorModel.findAll(); 
-
+    const data = await Sensor.findAll();
+    
     await sendSensorDataAsCSV(data, email);
     console.log("Email sent successfully.");
     res.status(200).json({ message: "Email sent successfully." });
@@ -225,5 +215,7 @@ async function downloadData(req, res) {
       .json({ error: "An error occurred while sending the email." });
   }
 }
+
+
 
 module.exports = downloadData;
