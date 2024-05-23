@@ -38,11 +38,13 @@ module.exports = {
     extensions: [".js", ".jsx"],
   },
   devServer: {
-    publicPath: "/dist/",
     static: {
       directory: path.join(__dirname, "dist"),
     },
-    compress: true,
+    devMiddleware: {
+      publicPath: "/", // Use devMiddleware to set the public path
+    },
     port: 3000,
+    historyApiFallback: true, // This ensures that the server always returns the index.html for any 404 errors
   },
 };
