@@ -5,12 +5,14 @@ services:
     image: mysql/mysql-server:latest
     ports:
       - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
 
   backend:
     container_name: backend
-    build: ./Backend
+    build: ./backend
     env_file:
-      - ./Backend/.env
+      - ./backend/.env
     ports:
       - "8000:8000"
     depends_on:
@@ -21,6 +23,9 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
+    
+volumes:
+  db_data:
 
   # redis:
   #   container_name: redis
