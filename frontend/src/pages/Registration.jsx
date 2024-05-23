@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BACKEND_URL from '../../cofig';
+import BACKEND_URL from '../config';
 function Registration() {
   const [formData, setFormData] = useState({
     firstName: '',

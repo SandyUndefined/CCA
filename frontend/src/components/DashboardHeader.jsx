@@ -62,7 +62,7 @@ function DashboardHeader() {
         <a href="#download" onClick={dataRequest}>Data Request</a>
       </div>
       <div className="right">
-        <a href="../index.html">Log Out</a>
+        <a href="../">Log Out</a>
         <div id="sun" onClick={themeChange}>
           <img src="../assets/images/sun.png" alt="" />
         </div>

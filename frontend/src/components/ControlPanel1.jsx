@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import BACKEND_URL from '../../cofig';
+import BACKEND_URL from '../config';
 
 function ControlPanel1() {
 

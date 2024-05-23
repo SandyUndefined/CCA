@@ -8,7 +8,7 @@ import Polyhouse1Details from '../components/Polyhouse1Details';
 import Polyhouse2Details from '../components/Polyhouse2Details';
 import ControlPanel1 from '../components/ControlPanel1';
 import ControlPanel2 from '../components/ControlPanel2';
-import BACKEND_URL from '../../cofig';
+import BACKEND_URL from '../config';
 
 function Dashboard() {
   const downloadData = () => {

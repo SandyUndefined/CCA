@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import BACKEND_URL from '../../cofig';
+import BACKEND_URL from '../config';
 // import { Auth0Provider } from '@auth0/auth0-react';
 
 function Login() {
