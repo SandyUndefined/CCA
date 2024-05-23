@@ -46,8 +46,8 @@ app.get(
     res.cookie("postitgooglejwt", token, { httpOnly: true }); // Send JWT in HTTP-only cookie
     res
       .status(201)
-      .json({ success: true, message: "Google Auth Success!" });
-    // res.redirect("{process.env.FRONTEND_URL}/dashboard"); // Adjust redirect as necessary // Send response code to frontend
+      // .json({ success: true, message: "Google Auth Success!" });
+    res.redirect(`${process.env.FRONTEND_URL}/dashboard`); // Adjust redirect as necessary // Send response code to frontend
   }
 );
 
