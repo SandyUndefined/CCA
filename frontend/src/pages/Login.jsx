@@ -3,6 +3,7 @@ import axios from 'axios';
 import BACKEND_URL from '../config';
 // import { Auth0Provider } from '@auth0/auth0-react';
 
+
 function Login() {
 const submitForm = async (event) => {
     event.preventDefault();
@@ -59,7 +60,7 @@ const submitForm = async (event) => {
     <div className="content">
       <div id="left">
         <div className="left-content">
-          <h2>Welcome Back</h2>
+          <h2> <br></br>Welcome Back</h2>
           <p>Login To Your account</p>
           <div className="row">
             <div className="col-md-3">
@@ -90,7 +91,7 @@ const submitForm = async (event) => {
             <p>or continue with</p>
           </div>
           <form onSubmit={submitForm}>
-            <input type="email" placeholder="email" id="email" name="email" />
+            <input type="email" placeholder="Email" id="email" name="email" />
             <input
               type="password"
               placeholder="Password"
@@ -122,3 +123,72 @@ const submitForm = async (event) => {
 
 export default Login;
 
+
+
+
+
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import { useRouter } from 'next/router';
+// import Link from 'next/link';
+
+// const Login = () => {
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const router = useRouter();
+
+//   const submitForm = async (event) => {
+//     event.preventDefault();
+//     try {
+//       // Simulate login (replace with actual login logic)
+//       // For demonstration, we're just redirecting to the dashboard on successful login
+//       router.push('/dashboard');
+//     } catch (error) {
+//       console.error('Login error:', error);
+//       alert('Login failed. Please try again.');
+//     }
+//   };
+
+//   return (
+//     <div className="content">
+//       <div id="left">
+//         <div className="left-content">
+//           <h2>Welcome Back</h2>
+//           <p>Login to your account</p>
+//           <form onSubmit={submitForm}>
+//             <input
+//               type="email"
+//               placeholder="Email"
+//               value={email}
+//               onChange={(e) => setEmail(e.target.value)}
+//               required
+//             />
+//             <input
+//               type="password"
+//               placeholder="Password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               required
+//             />
+//             <input
+//               type="submit"
+//               name="submit"
+//               value="Log In"
+//             />
+//           </form>
+//           <div className="forgot">
+//             <Link href="/forgot-password">Forgot Password</Link>
+//           </div>
+//           <div className="redirect">
+//             <p>
+//               Don't have an account? <span><Link href="/register">Register</Link></span>
+//             </p>
+//           </div>
+//         </div>
+//       </div>
+//       <div id="right"></div>
+//     </div>
+//   );
+// };
+
+// export default Login;

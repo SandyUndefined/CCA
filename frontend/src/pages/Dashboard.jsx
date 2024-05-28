@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { SERVER_URL } from '../server/config';
 import DashboardHeader from '../components/DashboardHeader';
 import DashboardSidebar from '../components/DashboardSidebar';
 import PolyhouseMap1 from '../components/PolyhouseMap1';
@@ -8,12 +9,11 @@ import Polyhouse1Details from '../components/Polyhouse1Details';
 import Polyhouse2Details from '../components/Polyhouse2Details';
 import ControlPanel1 from '../components/ControlPanel1';
 import ControlPanel2 from '../components/ControlPanel2';
-import BACKEND_URL from '../config';
 
 function Dashboard() {
   const downloadData = () => {
     console.log("DOWNLOAD :)");
-    axios.get(`${BACKEND_URL}/user/download`, {
+    axios.get(`${SERVER_URL}/user/download`, {
       withCredentials: true,
     })
     .then(function (response) {
@@ -36,9 +36,9 @@ function Dashboard() {
     <ControlPanel1/>
     <ControlPanel2/>
 
-    <div className="main">
+    <div className="main-d">
       <div id="download">
-        <h2>CCA FACILITY IIT MANDI</h2>
+        <h2  className='data-d'>CCA FACILITY IIT MANDI</h2>
         <h4>Sensor Data Request</h4>
         <p>
           We have developed a system to monitor and analyze sensor data from

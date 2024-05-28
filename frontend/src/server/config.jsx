@@ -1,9 +1,3 @@
-const BACKEND_URL="http://ec2-13-235-128-105.ap-south-1.compute.amazonaws.com:8000";
-
-export default BACKEND_URL;
-
-
-
 // export const SERVER_URL = "https://research.iitmandi.ac.in:8000";
 // export const LOGIN = "https://research.iitmandi.ac.in:8000/user/login";
 // export const REGISTRATION = "https://research.iitmandi.ac.in:8000/user/signup"

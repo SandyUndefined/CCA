@@ -1,62 +1,53 @@
 require('dotenv').config();
 const express = require("express");
-const bodyParser = require("body-parser");
+const https = require("https");
+const http = require("http");
 const fs = require("fs");
 const app = express();
-const passport = require("passport");
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
+const db = require("./config/database");
 const userRoutes = require("./routes/userRoutes");
 const sensorRoutes = require("./routes/sensorRoutes");
 const actuatorRoutes = require("./routes/actuatorRoutes");
 const session = require("express-session");
-const authService = require("./services/authService");
+ const passport = require("passport");
 const cors = require("cors");
-require("./utils/passport-setup"); 
+const cookieParser = require("cookie-parser");
+const csv = require("csv-parser");
 
-// Configure session management
+app.use(cookieParser());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
+const corsOptions = {
+  origin: "http://13.235.128.105:3000",
+  credentials: true,
+};
+
+
+
+app.use(cors(corsOptions));
+
+
 app.use(
   session({
-    secret: "replace_with_a_real_secret", // Ensure this is a secure secret and ideally environment-specific
+    secret: "IITMANDI",
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true, httpOnly: true }, // Consider using secure: true in production
+    saveUninitialized: false,
   })
 );
-
-// Initialize passport for authentication
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Body parser middleware to parse JSON payloads
-app.use(bodyParser.json());
-app.use(cors());
-
-// Google OAuth routes
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
-
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  (req, res) => {
-    // Successful authentication, issue token and redirect to the home page.
-    const token = authService.generateToken(req.user);
-    res.cookie("postitgooglejwt", token, { httpOnly: true }); // Send JWT in HTTP-only cookie
-    res
-      .status(201)
-      // .json({ success: true, message: "Google Auth Success!" });
-    res.redirect(`${process.env.FRONTEND_URL}/dashboard`); // Adjust redirect as necessary // Send response code to frontend
-  }
-);
+app.use(express.json());
 
 app.use("/sensor", sensorRoutes);
 app.use("/user", userRoutes);
 app.use("/act", actuatorRoutes);
-app.get("/", (req, res) => {
-  res.json({ message: "CCA API is working..." });
-});
+
 // HTTPS Configuration
 const options = {
   cert: fs.readFileSync("SSL.crt"),
@@ -64,8 +55,18 @@ const options = {
   ca: fs.readFileSync("SSL_Bundle.crt"),
 };
 
+// Create HTTPS server
+// const server = https.createServer(options, app);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const localServer = http.createServer(options, app);
+
+localServer.listen(PORT, () => {
+  console.log(`API listening on PORT ${PORT}`);
+});
+
+// server.listen(PORT, () => {
+//   console.log(`API listening on PORT ${PORT}`);
+// });
 
 
 
@@ -89,7 +90,6 @@ const logger = winston.createLogger({
     new winston.transports.File({ filename: 'combined.log' }),
   ],
 });
-
 
 
 
@@ -149,6 +149,41 @@ logger.log({
 // logger.error('This is an error message');
 
 // module.exports = logger;
+
+
+
+
+
+
+
+
+// google auth
+
+
+
+
+// const express = require("express");
+// const passport = require("passport");
+// const cookieParser = require("cookie-parser");
+require("./controllers/googleAuthController"); 
+
+// const app = express();
+
+
+app.use(passport.initialize());
+app.use(cookieParser());
+
+// Import routes
+const authRoutes = require("./routes/authRoutes");
+
+app.use("/user/auth", authRoutes);
+
+// const PORT = 8000;
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
 
 
 

@@ -1,209 +1,153 @@
-const bcrypt = require("bcryptjs");
+const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-const User = require("../services/userService");
-const emailService = require("../services/emailService");
 
-const userController = {
-  // Handles user registration
-  async register(req, res) {
-    const {
-      name,
-      email,
-      password,
-      role,
-      accountType,
-      organizationName,
-      dataAccess,
-    } = req.body;
+const maxAge = 3 * 24 * 60 * 60; // Maximum age for JWT token
 
-    // Enhanced password validation
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-    if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required" });
-    }
-    if (!passwordRegex.test(password)) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "Password must be at least 8 characters long, include upper and lower case letters, and contain numbers and special characters.",
-        });
-    }
-    if (!name) {
-      return res.status(400).json({ message: "Name is required" });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    try {
-      const existingUser = await User.findUserByEmail(email);
-      if (existingUser) {
-        return res.status(409).json({ message: "Email already in use" });
-      }
-
-      const verificationToken = jwt.sign({ email }, process.env.JWT_SECRET, {
-        expiresIn: "24h",
-      });
-      const newUser = await User.createUser({
-        name,
-        email,
-        password: hashedPassword,
-        role,
-        accountType,
-        organizationName,
-        dataAccess
-      });
-
-      await emailService.sendVerificationEmail(email, verificationToken);
-      res
-        .status(201)
-        .json({
-          userId: newUser.id,
-          email: newUser.email,
-          message: "Verification email sent. Please check your email.",
-        });
-    } catch (error) {
-      console.error("Registration Error:", error);
-      res
-        .status(500)
-        .json({ message: "Could not register user", error: error.message });
-    }
-  },
-
-  // Handles user login
-  async login(req, res) {
-    const { email, password } = req.body;
-
-    // Check if both email and password are provided
-    if (!email || !password) {
-      return res
-        .status(400)
-        .json({ message: "Email and password are required" });
-    }
-
-    try {
-      const user = await User.findUserByEmail(email);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-
-      if (!user.is_verified) {
-        return res
-          .status(401)
-          .json({ message: "Please verify your email before logging in." });
-      }
-
-      const isValid = await bcrypt.compare(password, user.password);
-      if (!isValid) {
-        // Possible account lockout implementation here
-        return res.status(400).json({ message: "Invalid credentials" });
-      }
-
-      const token = jwt.sign(
-        { userId: user.id, email: user.email },
-        process.env.JWT_SECRET,
-        { expiresIn: "1h" }
-      );
-      res.json({ token, userId: user.id, email: user.email });
-    } catch (error) {
-      console.error("Login Error:", error);
-      res
-        .status(500)
-        .json({ message: "Could not log in", error: error.message });
-    }
-  },
-
-  // Handles forgot password request
-  async forgotPassword(req, res) {
-    const { email } = req.body;
-
-    // Check if email is provided
-    if (!email) {
-      return res.status(400).json({ message: "Email is required" });
-    }
-
-    try {
-      const user = await User.findUserByEmail(email);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-
-      const resetToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-        expiresIn: "20m",
-      });
-      const tokenTimestamp = new Date(); // Current timestamp
-      console.log(tokenTimestamp);
-      // Store the reset token and timestamp in the database
-      await User.updateResetToken(user.id, resetToken, tokenTimestamp);
-
-      const resetLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
-      await emailService.sendPasswordResetEmail(email, resetLink);
-      res.json({ message: "Password reset link has been sent to your email." });
-    } catch (error) {
-      console.error("Forgot Password Error:", error);
-      res
-        .status(500)
-        .json({
-          message: "Error in sending password reset link",
-          error: error.message,
-        });
-    }
-  },
-
-  // Handles resetting the user's password
-  async resetPassword(req, res) {
-    const { token, newPassword } = req.body;
-
-    // Check if token and new password are provided
-    if (!token || !newPassword) {
-      return res
-        .status(400)
-        .json({ message: "Token and new password are required" });
-    }
-
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const user = await User.findUserById(decoded.userId);
-
-      // Check if token matches the one in the database and check timestamp
-      if (!user.reset_token || user.reset_token !== token) {
-        return res.status(401).json({ message: "Invalid or expired token." });
-      }
-
-      const tokenAge =
-        (new Date() - new Date(user.token_timestamp)) / 1000 / 60; // Convert to minutes
-      if (tokenAge > 20) {
-        // Assuming token validity is 20 minutes
-        return res.status(401).json({ message: "Invalid or expired token." });
-      }
-
-      // Enhanced password validation
-      const passwordRegex =
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-      if (!passwordRegex.test(newPassword)) {
-        return res
-          .status(400)
-          .json({
-            message:
-              "Password must be at least 8 characters long, include upper and lower case letters, and contain numbers and special characters.",
-          });
-      }
-
-      const hashedPassword = await bcrypt.hash(newPassword, 10);
-      await User.updatePassword(decoded.userId, hashedPassword);
-      await User.clearResetToken(decoded.userId); // Optionally clear the token after use
-      res.json({ message: "Your password has been updated successfully." });
-    } catch (error) {
-      if (error instanceof jwt.JsonWebTokenError) {
-        return res.status(401).json({ message: "Invalid or expired token." });
-      }
-      console.error("Reset Password Error:", error);
-      res
-        .status(500)
-        .json({ message: "Could not reset password", error: error.message });
-    }
-  },
+// Function to create a JWT token
+const createToken = (id) => {
+  return jwt.sign({ id }, "iitmandi", {
+    expiresIn: maxAge,
+  });
 };
 
-module.exports = userController;
+// Function to handle errors
+const handleErrors = (err) => {
+  console.error(err.message, err.code);
+  let errors = { email: "", password: "" };
+
+  if (err.code === "ER_DUP_ENTRY") {
+    errors.email = "That email is already registered";
+    return errors;
+  }
+
+  if (err.message.includes("user validation failed")) {
+    Object.values(err.errors).forEach(({ message, path }) => {
+      errors[path] = message;
+    });
+  }
+
+  return errors;
+};
+
+// Controller to get all users
+async function getAllUsers(req, res) {
+  try {
+    let users = await User.findAll();
+    res.status(200).json({
+      data: users,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+}
+
+// Controller to sign up a new user
+async function signUp(req, res) {
+  try {
+    console.log("user signup is working inside userController.js")
+    let body = req.body;
+    let newUser = await User.create(body);
+    const token = createToken(newUser.id);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+    console.log("New Event: New user Created");
+    console.log(newUser);
+    res.status(201).json({
+      newUser: newUser.id,
+      message: "New User Created",
+    });
+  } catch (error) {
+    const errors = handleErrors(error);
+    res.status(400).json({ errors });
+  }
+}
+
+// Controller to log in a user
+async function login(req, res) {
+  console.debug("User login is working inside userController.js");
+  try {
+    let body = req.body;
+    let user = await User.findOne({ where: { email: body.email } });
+    if (user) {
+      if (user.password === body.password) {
+        const token = createToken(user.id);
+        res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.status(200).json({ user });
+      } else {
+        res.clearCookie("jwt");
+        res.status(401).json({
+          message: "Incorrect Password.",
+        });
+      }
+    } else {
+      res.clearCookie("jwt");
+      res.status(401).json({
+        message: "User not found.",
+      });
+    }
+  } catch (error) {
+    const errors = handleErrors(error);
+    res.status(400).json({ errors });
+  }
+}
+
+// Middleware to protect routes requiring authentication
+async function protectRoute(req, res, next) {
+  try {
+    let token;
+    if (req.cookies.jwt) {
+      token = req.cookies.jwt;
+      const payload = jwt.verify(token, "iitmandi");
+      if (payload) {
+        const user = await User.findByPk(payload.id);
+        req.body.role = user.role;
+        req.body.id = user.id;
+        next();
+      } else {
+        return res.status(401).json({
+          message: "Login again.",
+        });
+      }
+    } else {
+      res.status(401).json({
+        message: "Please Login",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+}
+
+// Controller to get user profile
+async function getUserProfile(req, res) {
+  let id = req.body.id;
+  let user = await User.findByPk(id);
+  if (user) {
+    return res.json(user);
+  } else {
+    res.json({
+      message: "User not found",
+    });
+  }
+}
+
+// Controller to delete all users
+async function deleteAll(req, res) {
+  await User.destroy({ truncate: true });
+  res.json({
+    message: "Users Deleted",
+  });
+}
+
+module.exports = {
+  signUp,
+  getAllUsers,
+  deleteAll,
+  protectRoute,
+  getUserProfile,
+  login,
+};
