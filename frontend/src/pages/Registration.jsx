@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { REGISTRATION } from '../server/config';
-
+import BACKEND_URL from '../config';
 function Registration() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -19,7 +18,7 @@ function Registration() {
   const submitForm = async (event) => {
   event.preventDefault();
   try {
-    const response = await fetch(`${REGISTRATION}`, {
+    const response = await fetch(`${BACKEND_URL}/user/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -180,6 +179,8 @@ export default Registration;
 //       console.error("An error occurred:", error);
 //     }
 //   };
+
+
 
 //   return (
 //     <div className="content">
