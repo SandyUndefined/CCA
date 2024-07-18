@@ -8,7 +8,6 @@ const downloadData = require("../controllers/nodemailerController");
 //
 router.get('/allUsers', getAllUsers);
 
-//
 router.post('/signup', signUp);
 router.post('/login', login);
 router.get('/',  function (req, res, next) {

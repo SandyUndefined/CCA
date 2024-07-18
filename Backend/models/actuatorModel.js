@@ -41,19 +41,8 @@
 // const actuatorModel = mongoose.model("actuatorModel", actuatorSchema);
 // module.exports = actuatorModel;
 
-const { DataTypes, Sequelize } = require("sequelize");
-const config = require("../config.json");
-
-const { username, password, host, database } = config.mysql;
-
-const encodedUsername = encodeURIComponent(username);
-const encodedPassword = encodeURIComponent(password);
-const encodedHost = encodeURIComponent(host);
-const encodedDatabase = encodeURIComponent(database);
-
-const sequelize = new Sequelize(
-  `mysql://${encodedUsername}:${encodedPassword}@${encodedHost}:3306/${encodedDatabase}`
-);
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database"); // Adjust the path to your database.js file as needed
 
 const Actuator = sequelize.define("Actuator", {
   plantName: {

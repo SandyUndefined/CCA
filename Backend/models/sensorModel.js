@@ -77,21 +77,8 @@
 // const SensorData = mongoose.model('SensorData', sensorDataSchema);
 
 // module.exports = SensorData;
-
-const { DataTypes, Sequelize } = require("sequelize");
-const config = require("../config.json");
-
-const { username, password, host, database } = config.mysql;
-
-const encodedUsername = encodeURIComponent(username);
-const encodedPassword = encodeURIComponent(password);
-const encodedHost = encodeURIComponent(host);
-const encodedDatabase = encodeURIComponent(database);
-
-const sequelize = new Sequelize(
-  `mysql://${encodedUsername}:${encodedPassword}@${encodedHost}:3306/${encodedDatabase}`
-);
-
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
 
 const SensorData = sequelize.define("SensorData", {
   plantId: {
@@ -100,7 +87,7 @@ const SensorData = sequelize.define("SensorData", {
   },
   timestamp: {
     type: DataTypes.DATE,
-    defaultValue: Sequelize.NOW,
+    defaultValue: DataTypes.NOW,
   },
   temperature_internal_Sensor1: DataTypes.STRING,
   temperature_internal_Sensor2: DataTypes.STRING,

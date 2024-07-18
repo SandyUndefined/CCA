@@ -67,21 +67,8 @@
 
 // const userModel = mongoose.model("userModel", userSchema);
 // module.exports = userModel
-
-const { DataTypes, Sequelize } = require("sequelize");
-const config = require("../config.json");
-
-const { username, password, host, database } = config.mysql;
-
-const encodedUsername = encodeURIComponent(username);
-const encodedPassword = encodeURIComponent(password);
-const encodedHost = encodeURIComponent(host);
-const encodedDatabase = encodeURIComponent(database);
-
-const sequelize = new Sequelize(
-  `mysql://${encodedUsername}:${encodedPassword}@${encodedHost}:3306/${encodedDatabase}`
-);
-
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
 
 const User = sequelize.define("User", {
   firstName: {

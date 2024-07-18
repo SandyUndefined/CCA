@@ -1,41 +1,30 @@
-// const mongoose = require("mongoose");
-
-// mongoose.connect("mongodb://127.0.0.1:27017", {
-//   dbName: "IITMandi_Project",
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-// db.once('open', () => {
-//   console.log('Connected to MongoDB');
-// });
-
-// module.exports = db;
-
-const mysql = require("mysql2");
-const config = require("../config.json");
-
-// Create a connection pool
-const pool = mysql.createPool({
-  host: config.mysql.host,
-  port: config.mysql.port,
-  user: config.mysql.username,
-  password: config.mysql.password,
-  database: config.mysql.database,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
-
-// Connect to MySQL
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error("Error connecting to MySQL:", err.stack);
-    return;
+const { Sequelize } = require("sequelize");
+require("dotenv").config();
+// Initialize Sequelize with environment variables
+const sequelize = new Sequelize(
+  process.env.MYSQL_DATABASE,
+  process.env.MYSQL_USER,
+  process.env.MYSQL_PASSWORD,
+  {
+    host: process.env.MYSQL_HOSTNAME,
+    port: 3306, // Default to 3306 if not specified
+    dialect: "mysql", // You can change this to 'postgres', 'sqlite', 'mariadb', 'mssql', etc.
+    pool: {
+      max: 10,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
   }
-  console.log("Connected to MySQL as id", connection.threadId);
-  connection.release();
-});
+);
 
-module.exports = pool.promise();
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });
+
+module.exports = sequelize;
