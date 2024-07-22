@@ -30,7 +30,10 @@ jobs:
     - name: Install dependencies and create package-lock.json if missing
       run: |
         if [ ! -f package-lock.json ]; then
+          echo "package-lock.json not found, running npm install to generate it."
           npm install
+        else
+          echo "package-lock.json found, proceeding with npm ci."
         fi
 
     - name: Clean install dependencies using package-lock.json
