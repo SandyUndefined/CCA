@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile">
+            <img src="images/profile.png" alt="Profile">
+            <p id="userName">Username</p>
+        </div>
+        <div id="polyNo">
+            <select id="options">
+                <option value="option1">Dashboard</option>
+                <option value="option2">Polyhouse 1</option>
+                <option value="option3">Polyhouse 2</option>
+            </select>
+        </div>
+        <div id="attributes">
+            <a href="#temp">Temperature</a>
+            <a href="#humidity">Humidity</a>
+            <a href="#soilTemp">Soil Temperature</a>
+            <a href="#waterTemp">Water Temperature</a>
+            <a href="#co2">CO2</a>
+            <a href="#light">Light</a>
+            <a href="#moisture">Moisture</a>
+            <a href="#actuators">Actuators</a>
+            <a href="#pyranometer">Solar Irradiance</a>
+        </div>
+        <div id="attributes_2" style="display: none;">
+            <a href="#temp_2">Temperature</a>
+            <a href="#humidity_2">Humidity</a>
+            <a href="#soilTemp_2">Soil Temperature</a>
+            <a href="#waterTemp_2">Water Temperature</a>
+            <a href="#co2_2">CO2</a>
+            <a href="#light_2">Light</a>
+            <a href="#moisture_2">Moisture</a>
+            <a href="#actuators_2">Actuators</a>
+            <a href="#pyranometer_2">Solar Irradiance</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <nav>
+        <div class="left">
+            <img id="logo-l" src="images/logo.png" alt="Logo Light">
+            <img id="logo-d" src="images/white logo.png" alt="Logo Dark" style="display: none;">
+            <div class="links">
+                <a href="#" id="dashboard">Dashboards</a>
+                <span>/</span>
+                <a href="https://www.canva.com/design/DAFl-x-HX70/AciH_KN62I30I3ZYvdQ2tw/view?utm_content=DAFl-x-HX70&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" target="_blank">About</a>
+                <a href="http://faculty.iitmandi.ac.in/~tushar" target="_blank">Contact</a>
+                <a href="#download" id="dataRequestLink">Data Request</a>
+            </div>
+        </div>
+        <div class="right">
+            <a href="/login/index.html">Log Out</a>
+            <div id="sun" class="theme-icon">
+                <img src="images/sun.png" alt="Sun Icon">
+            </div>
+            <div id="moon" class="theme-icon" style="display: none;">
+                <img src="images/moon.png" alt="Moon Icon">
+            </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <img src="images/hamburger.png" alt="Menu Icon">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <a href="#" id="dashboard">Dashboards</a>
+        <a href="https://www.canva.com/design/DAFl-x-HX70/AciH_KN62I30I3ZYvdQ2tw/view?utm_content=DAFl-x-HX70&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" target="_blank">About</a>
+        <a href="http://faculty.iitmandi.ac.in/~tushar" target="_blank">Contact</a>
+        <a href="/Dashboard/Dashboard.html" id="dataRequestLink">Data Request</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.getElementById('dataRequestLink').addEventListener('click', () => {
+            const poly1 = document.getElementById('Polyhouse1');
+            const poly2 = document.getElementById('Polyhouse2');
+            const sidebar1 = document.getElementById('attributes');
+            const sidebar2 = document.getElementById('attributes_2');
+            const pannel = document.getElementById("controlPannel");
+            const dataDownloadRequest = document.getElementById("download");
+            const map1 = document.getElementById("map1");
+            const map2 = document.getElementById("map2");
+
+            poly1.style.display = "none";
+            poly2.style.display = "none";
+            sidebar1.style.display = "flex";
+            sidebar2.style.display = "none";
+            pannel.style.display = "none";
+            dataDownloadRequest.style.display = "flex";
+            map1.style.display = "none";
+            map2.style.display = "none";
+        });
+
+        document.querySelectorAll('.theme-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                const moon = document.getElementById('moon');
+                const sun = document.getElementById('sun');
+                const logoLight = document.getElementById("logo-l");
+                const logoDark = document.getElementById("logo-d");
+
+                if (sun.style.display === "none") {
+                    sun.style.display = "block";
+                    moon.style.display = "none";
+                    logoLight.style.display = "block";
+                    logoDark.style.display = "none";
+                    document.documentElement.setAttribute("data-theme", "light");
+                } else {
+                    moon.style.display = "block";
+                    sun.style.display = "none";
+                    logoLight.style.display = "none";
+                    logoDark.style.display = "block";
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
