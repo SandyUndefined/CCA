@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Additional styles for button */
+    .btn {
+      display: flex; /* Center contents horizontally */
+      align-items: center; /* Center contents vertically */
+      justify-content: center; /* Center contents horizontally */
+      text-decoration: none; /* Remove underline */
+      transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    }
+
+    .btn:hover {
+      background-color: #f0f0f0; /* Grey background on hover */
+    }
+  </style>
+</head>
+<body>
+  <nav class="navb">
+    <a target="__blank" href="https://www.iitmandi.ac.in" class="brand">
+      <img src="https://sps.iitmandi.ac.in/images/iitlogo.png" alt="IIT Mandi">
+    </a>
+    <ul id="navMenu" class="nav__menu">
+      <li class="nav__item"><a href="home.html" class="nav__link">Home</a></li>
+      <li class="nav__item"><a target="__blank" href="https://www.canva.com/design/DAFl-x-HX70/AciH_KN62I30I3ZYvdQ2tw/view?utm_content=DAFl-x-HX70&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" class="nav__link">About</a></li>
+      <li class="nav__item"><a href="http://faculty.iitmandi.ac.in/~tushar" target="_blank" class="nav__link">Contact</a></li>
+      <li class="nav__item"><a href="login.html" class="nav__link">Login</a></li>
+      <li class="nav__item"><a href="Registration.html" class="nav__link">Register</a></li>
+    </ul>
+    <div id="navToggler" class="nav__toggler">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <div id="left">
+      <div class="left-content">
+        <h2 style="color: coral;"> <br>Welcome Back</h2>
+        <p>Login To Your account</p>
+        <div class="row">
+          <div class="col-md-3">
+            <a
+              class="btn btn-outline-dark"
+              href="polyhouse1.html"
+              role="button"
+              style="
+                text-transform: none;
+                height: 50px; /* Increased height for more space */
+                font-family: Poppins;
+                border: 1.73658px solid #20dc49;
+                border-radius: 8.68291px;
+                padding-left: 20px; /* Added padding for more space around the logo */
+                padding-right: 20px;
+                display: flex; /* Ensures alignment of the content */
+                align-items: center;
+                justify-content: center;
+                background-color: white; /* Default button background */
+                color: black; /* Text color */
+              "
+            >
+              <img
+                width="30px"
+                height="30px"
+                style="margin-bottom: 3px; margin-right: 10px;" /* Increased right margin */
+                alt="Google sign-in"
+                src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
+              />
+              Login with Google
+            </a>
+          </div>
+        </div>
+        <div class="separate"></div>
+      </div>
+    </div>
+    <div id="right">
+    </div>
+  </div>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
