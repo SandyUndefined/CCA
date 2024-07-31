@@ -55,40 +55,40 @@ function navToggle() {
   navToggler.classList.toggle('toggle');
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('registrationForm');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const form = document.getElementById('registrationForm');
   
-    form.addEventListener('submit', async function (event) {
-      event.preventDefault();
+//     form.addEventListener('submit', async function (event) {
+//       event.preventDefault();
       
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+//       const formData = new FormData(form);
+//       const data = Object.fromEntries(formData.entries());
   
-      if (data.password !== data.confirmPassword) {
-        alert('Passwords do not match');
-        return;
-      }
+//       if (data.password !== data.confirmPassword) {
+//         alert('Passwords do not match');
+//         return;
+//       }
   
-      try {
-        const response = await fetch('YOUR_BACKEND_URL/user/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
+//       try {
+//         const response = await fetch('YOUR_BACKEND_URL/user/signup', {
+//           method: 'POST',
+//           headers: {
+//             'Content-Type': 'application/json',
+//           },
+//           body: JSON.stringify(data),
+//         });
   
-        if (response.ok) {
-          console.log('User signed up successfully!');
-          window.location.href = './login'; // Redirect to login page
-        } else {
-          console.error('Error signing up:', response.statusText);
-        }
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
-    });
-  });
+//         if (response.ok) {
+//           console.log('User signed up successfully!');
+//           window.location.href = './login'; // Redirect to login page
+//         } else {
+//           console.error('Error signing up:', response.statusText);
+//         }
+//       } catch (error) {
+//         console.error('An error occurred:', error);
+//       }
+//     });
+//   });
   
 
 

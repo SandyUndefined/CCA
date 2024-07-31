@@ -19,6 +19,25 @@
       background-color: #f0f0f0; /* Grey background on hover */
     }
   </style>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+      // Send the response.credential to your backend for verification and further processing
+    }
+
+    window.onload = function() {
+      google.accounts.id.initialize({
+        client_id: '212921215842-r9tscro7r0oh3gmuffja65gcc4c8um92.apps.googleusercontent.com ', // Replace with your actual Client ID
+        callback: handleCredentialResponse
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("buttonDiv"),
+        { theme: "outline", size: "large" }  // customization attributes
+      );
+      google.accounts.id.prompt(); // Display the One Tap prompt
+    }
+  </script>
 </head>
 <body>
   <nav class="navb">
@@ -30,7 +49,6 @@
       <li class="nav__item"><a target="__blank" href="https://www.canva.com/design/DAFl-x-HX70/AciH_KN62I30I3ZYvdQ2tw/view?utm_content=DAFl-x-HX70&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink" class="nav__link">About</a></li>
       <li class="nav__item"><a href="http://faculty.iitmandi.ac.in/~tushar" target="_blank" class="nav__link">Contact</a></li>
       <li class="nav__item"><a href="login.html" class="nav__link">Login</a></li>
-      <li class="nav__item"><a href="Registration.html" class="nav__link">Register</a></li>
     </ul>
     <div id="navToggler" class="nav__toggler">
       <div class="line1"></div>
@@ -46,34 +64,7 @@
         <p>Login To Your account</p>
         <div class="row">
           <div class="col-md-3">
-            <a
-              class="btn btn-outline-dark"
-              href="polyhouse1.html"
-              role="button"
-              style="
-                text-transform: none;
-                height: 50px; /* Increased height for more space */
-                font-family: Poppins;
-                border: 1.73658px solid #20dc49;
-                border-radius: 8.68291px;
-                padding-left: 20px; /* Added padding for more space around the logo */
-                padding-right: 20px;
-                display: flex; /* Ensures alignment of the content */
-                align-items: center;
-                justify-content: center;
-                background-color: white; /* Default button background */
-                color: black; /* Text color */
-              "
-            >
-              <img
-                width="30px"
-                height="30px"
-                style="margin-bottom: 3px; margin-right: 10px;" /* Increased right margin */
-                alt="Google sign-in"
-                src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
-              />
-              Login with Google
-            </a>
+            <div id="buttonDiv"></div>
           </div>
         </div>
         <div class="separate"></div>
