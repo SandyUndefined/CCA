@@ -24,11 +24,14 @@
     function handleCredentialResponse(response) {
       console.log("Encoded JWT ID token: " + response.credential);
       // Send the response.credential to your backend for verification and further processing
+      // For demonstration purposes, we're redirecting to polyhouse1.html directly
+      // Ensure you have appropriate token validation and session management in your backend
+      window.location.href = "polyhouse1.html";
     }
 
     window.onload = function() {
       google.accounts.id.initialize({
-        client_id: '212921215842-r9tscro7r0oh3gmuffja65gcc4c8um92.apps.googleusercontent.com ', // Replace with your actual Client ID
+        client_id: '212921215842-eearqfhdoo7pbmf7d945hqu6h09nfro7.apps.googleusercontent.com', // Replace with your actual Client ID
         callback: handleCredentialResponse
       });
       google.accounts.id.renderButton(
