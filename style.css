@@ -74,19 +74,19 @@ p {
 
 @keyframes changeImage {
   0% {
-    background-image: url("/images/slider1.png");
+    background-image: url("images/slider1.png");
   }
   25% {
-    background-image: url("/images/sldier4.JPG");
+    background-image: url("images/sldier4.JPG");
   }
   50% {
-    background-image: url("/images/slider3.png");
+    background-image: url("images/slider3.png");
   }
   75% {
-    background-image: url("/images/slider5.JPG");
+    background-image: url("images/slider5.JPG");
   }
   100% {
-    background-image: url("/images/slider2.png");
+    background-image: url("images/slider2.png");
   }
 }
 

@@ -1,0 +1,37 @@
+# Frontend Url
+FRONTEND_URL="http://localhost:3000/"
+
+
+
+# Twilio Email verification
+SENDGRID_API_KEY=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
+SENDGRID_VERIFIED_SENDER_EMAIL=iitmandiccafacility@gmail.com
+
+FRONTEND_URL_EMAIL=http://localhost:8000/user
+
+JWT_SECRET=2uwxjZuFBC3gjnarlWnKTo0ZfoVqZu3q2TAhQl+rZnM
+
+# Google OAuth
+GOOGLE_CLIENT_ID=212921215842-r9tscro7r0oh3gmuffja65gcc4c8um92.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+GOOGLE_CALLBACK_URL=http://localhost:8000/auth/google/callback
+
+
+# Mailer Details
+EMAIL_USER="iitmandiccafacility@gmail.com"
+EMAIL_PASSWORD="phfwgzkimurnatre"
+EMAIL_SENDER=""
+
+# # IITMANDI Server details
+# MYSQL_HOSTNAME="cca.cl4i6i0kmx4e.ap-south-1.rds.amazonaws.com"
+# MYSQL_USERNAME="admin"
+# MYSQL_PASSWORD="admin123"
+# MYSQL_DATABASE="cca"
+
+# Local Server details
+MYSQL_HOSTNAME="localhost"
+MYSQL_USERNAME="root"
+MYSQL_PASSWORD=""
+MYSQL_DATABASE="cca"
+
+
