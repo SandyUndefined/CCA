@@ -17,11 +17,6 @@ router.get('/',  function (req, res, next) {
 router.delete('/delete', deleteAll)
 
 
-
-// Set up Express routes
-// router.get('/auth/google', signin);
-// router.get('/auth/google/callback', signinCallback, dashboard);
-
 router.get('/userProfile',getUserProfile);
 router.get('/download',downloadData);
 

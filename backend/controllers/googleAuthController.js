@@ -14,7 +14,6 @@ const createToken = (id) => {
 
 let newUser;
 
-
 // Configure Passport to use Google OAuth 2.0 strategy
 passport.use(
   new GoogleStrategy(
@@ -26,21 +25,29 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        // Find user in the database by email
         let user = await User.findOne({
           where: { email: profile.emails[0].value },
         });
 
+        const firstName =
+          profile.name.givenName.length < 4
+            ? `${profile.name.givenName}___`
+            : profile.name.givenName;
+        const lastName =
+          profile.name.familyName.length < 4
+            ? `${profile.name.familyName}___`
+            : profile.name.familyName;
+
         if (user) {
           // Update user information if already exists
-          user.firstName = profile.name.givenName;
-          user.lastName = profile.name.familyName;
+          user.firstName = firstName;
+          user.lastName = lastName;
           user = await user.save();
         } else {
           // Create new user if doesn't exist
           user = await User.create({
-            firstName: profile.name.givenName,
-            lastName: profile.name.familyName,
+            firstName: firstName,
+            lastName: lastName,
             email: profile.emails[0].value,
           });
         }
@@ -73,7 +80,7 @@ const signin = passport.authenticate("google", { scope: ["profile", "email"] });
 
 const signinCallback = passport.authenticate("google", {
   failureRedirect: "/login",
-  session: false, // Do not use sessions, we are using JWTs
+  session: false,
 });
 
 const dashboard = (req, res) => {
