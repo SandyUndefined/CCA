@@ -170,12 +170,14 @@ function off(sliderId) {
 const themeChange = () => {
     const moon = document.getElementById('moon');
     const sun = document.getElementById('sun');
+    const mapbg = document.getElementById("map");
     if (sun.style.display == "none") {
         sun.style.display = "block";
         moon.style.display = "none";
         document.getElementById("logo-l").style.display = "block";
         document.getElementById("logo-d").style.display = "none";
         document.documentElement.setAttribute("data-theme", "light");
+        mapbg.style.backgroundImage = "url('../images/map\ light\ bg.png')"
 
     }
     else {
@@ -185,6 +187,7 @@ const themeChange = () => {
         document.getElementById("logo-l").style.display = "none";
         document.getElementById("logo-d").style.display = "block";
         document.documentElement.setAttribute("data-theme", "dark");
+        mapbg.style.backgroundImage = "url('../images/map\ bg\ dark.png')"
     }
 }
 // show pannel

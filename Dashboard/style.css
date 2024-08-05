@@ -93,17 +93,133 @@ body {
   flex-direction: column;
   padding: 20px;
 }
-#Polyhouse1 h2,#PolyHhous2 h2 {
+#Polyhouse1 h2,#Polyhouse2 h2 {
   font-family: poppins;
-  margin-left: 6.5%;
+  margin-left: 6%;
+}
+#waterTemp{
+  top: 12%;
 }
 .main {
   width: 85%;
   margin-left: 15%;
 }
-#Polyhouse1,
-#Polyhouse2,
-#controlPannel,#download{
+#map{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+  width: 85%;
+  background-image: url('../images/map\ light\ bg.png');
+  z-index: -1;
+}
+.mapScreen{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  margin: auto 0;
+  /* border: #0b0e10 2px solid; */
+  height: 70%;
+  width: 75%;
+  padding: 10px;
+}
+.mapMain{
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+.mapHeading h2{
+  margin-bottom: 8px;
+}
+.mapPoly{
+  width: 70%;
+  background-image: url('../images/map\ main.png');
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-around;
+  /* border: 2px solid red; */
+  background-position: center;
+}
+.mapPoly img{
+  height: 45px;
+  width: 45px;
+}
+.mapPoly-left{
+  width: 93%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* border: 2px solid rgb(79, 73, 73); */
+}
+.mapPoly-right{
+  width: 7%;
+  height: 68%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* border: 2px solid rgb(218, 46, 46); */
+}
+.mapPoly img:hover{
+  cursor: pointer;
+ transform: scale(1.05);
+}
+.mapNav{
+  width: 30%;
+  /* background-color: #b3dfbd; */
+  display: flex;
+  justify-content: space-around;
+}
+.map1,.map3{
+  width: 88%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+.map2{
+  display: flex;
+  justify-content: space-between;
+}
+.map4{
+  display: flex;
+  justify-content: space-between;
+  /* border: 2px solid red; */
+  width: 85%;
+  margin: 0 9%;
+}
+.map4-l,.map4-r{
+  display: flex;
+  justify-content: space-around;
+  /* border: 2px solid green; */
+  width: 40%;
+}
+.small img{
+ height: 50px;
+ width: 90px;
+}
+.mapNav-images img{
+  width: 45px;
+  height: 45px;
+}
+.mapNav-images{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around ;
+}
+.mapNav-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#Polyhouse1,#Polyhouse2{
+  position: absolute;
+  top: 120vh;
+  z-index: -1;
+}
+
+#controlPannel,#download,#map{
   position: absolute;
   top: 12%;
   z-index: -1;
