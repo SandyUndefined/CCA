@@ -2,7 +2,7 @@ function submitForm(event) {
     event.preventDefault();
     // Prevent the form from submitting in the default way
 
-    axios.post("https://research.iitmandi.ac.in:8000/user/login", {
+    axios.post("https://research.iitmandi.ac.in:8080/user/login", {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
     })

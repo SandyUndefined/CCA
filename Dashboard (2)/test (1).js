@@ -1,7 +1,7 @@
 const loggedInUserEmail = localStorage.getItem("loggedInUserEmail");
 console.log(loggedInUserEmail);
 const myFunc = () => {
-    axios.post("https://research.iitmandi.ac.in:8000/user/download", {
+    axios.post("https://research.iitmandi.ac.in:8080/user/download", {
         email: loggedInUserEmail,
     })
         .then((response) => {
@@ -64,7 +64,7 @@ const getTimeStamps = (num) => {
     // const a = new Date(num.timestamp).toLocaleString("en-IN").slice(9, 14);
     return a;
 }
-axios.get('https://research.iitmandi.ac.in:8000/sensor/polyhouse1/data')
+axios.get('https://research.iitmandi.ac.in:8080/sensor/polyhouse1/data')
     .then(response => {
         const data = response.data;
         // console.log(data.result.slice(-1)[0].timestamp)

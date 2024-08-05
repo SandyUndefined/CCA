@@ -3,7 +3,7 @@ const express = require("express");
 const https = require("https");
 const fs = require("fs");
 const app = express();
-const PORT = 8000;
+const PORT = 8080;
 const db = require("./config/database");
 const userRoutes = require("./routes/userRoutes");
 const sensorRoutes = require("./routes/sensorRoutes");
@@ -16,8 +16,11 @@ const cookieParser = require("cookie-parser");
 const csv = require("csv-parser");
 require("./controllers/googleAuthController"); 
 const corsOptions = {
-  origin: "https://research.iitmandi.ac.in:3000",
+  origin: "*",
   credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders:
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization",
 };
 app.use(cors(corsOptions));
 app.use(cookieParser());

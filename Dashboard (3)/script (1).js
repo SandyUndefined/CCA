@@ -1,7 +1,7 @@
 // DOWNLOAD DATA CSV FORMAT
 const downloadData = () => {
     console.log("DOWNLOAD :)");
-    axios.get('https://research.iitmandi.ac.in:8000/user/download')
+    axios.get('https://research.iitmandi.ac.in:8080/user/download')
         .then(function (response) {
             console.log(response.data);
         })
@@ -11,7 +11,7 @@ const downloadData = () => {
 }
 function fetchSensorValues() {
     $.ajax({
-        url: "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse1",
+        url: "https://research.iitmandi.ac.in:8080/act/getvalues/polyhouse1",
         method: "GET",
         dataType: "json",
         success: function (data) {
@@ -57,7 +57,7 @@ function updateSensor(sensor, value) {
     };
 
     $.ajax({
-        url: "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse1",
+        url: "https://research.iitmandi.ac.in:8080/act/getvalues/polyhouse1",
         method: "GET",
         dataType: "json",
         success: function (response) {
@@ -66,7 +66,7 @@ function updateSensor(sensor, value) {
             data.sensors = { ...currentSensorValues };
             data.sensors[sensor] = value;
 
-            fetch('https://research.iitmandi.ac.in:8000/act/updatevalues/polyhouse1', {
+            fetch('https://research.iitmandi.ac.in:8080/act/updatevalues/polyhouse1', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ function updateSensor(sensor, value) {
 }
 function fetchSensorValues_2() {
     $.ajax({
-        url: "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse2",
+        url: "https://research.iitmandi.ac.in:8080/act/getvalues/polyhouse2",
         method: "GET",
         dataType: "json",
         success: function (data) {
@@ -135,7 +135,7 @@ function updateSensor_2(sensor, value) {
     };
 
     $.ajax({
-        url: "https://research.iitmandi.ac.in:8000/act/getvalues/polyhouse2",
+        url: "https://research.iitmandi.ac.in:8080/act/getvalues/polyhouse2",
         method: "GET",
         dataType: "json",
         success: function (response) {
@@ -144,7 +144,7 @@ function updateSensor_2(sensor, value) {
             data.sensors = { ...currentSensorValues };
             data.sensors[sensor] = value;
 
-            fetch('https://research.iitmandi.ac.in:8000/act/updatevalues/polyhouse2', {
+            fetch('https://research.iitmandi.ac.in:8080/act/updatevalues/polyhouse2', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -753,7 +753,7 @@ const pyro = (num) => {
 }
 
 
-axios.get('https://research.iitmandi.ac.in:8000/sensor/polyhouse1/data')
+axios.get('https://research.iitmandi.ac.in:8080/sensor/polyhouse1/data')
     .then(response => {
         const data = response.data;
         const timeStamps = data.result.map(getTimeStamps);
@@ -2945,7 +2945,7 @@ axios.get('https://research.iitmandi.ac.in:8000/sensor/polyhouse1/data')
             }
         });
     });
-axios.get('https://research.iitmandi.ac.in:8000/sensor/polyhouse2/data')
+axios.get('https://research.iitmandi.ac.in:8080/sensor/polyhouse2/data')
     .then(response => {
         const data = response.data;
         const timeStamps = data.result.map(getTimeStamps);

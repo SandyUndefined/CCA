@@ -7,14 +7,7 @@ const sequelize = new Sequelize(
   process.env.MYSQL_PASSWORD,
   {
     host: process.env.MYSQL_HOSTNAME,
-    port: 3306, // Default to 3306 if not specified
-    dialect: "mysql", // You can change this to 'postgres', 'sqlite', 'mariadb', 'mssql', etc.
-    pool: {
-      max: 10,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
-    },
+    dialect: "mysql"
   }
 );
 

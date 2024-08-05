@@ -1,7 +1,3 @@
-
-
-
-
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/userModel");
@@ -23,9 +19,10 @@ let newUser;
 passport.use(
   new GoogleStrategy(
     {
-      clientID: "212921215842-r9tscro7r0oh3gmuffja65gcc4c8um92.apps.googleusercontent.com",
-      clientSecret: "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",
-      callbackURL:  "http://localhost:8000/auth/google/callback",
+      clientID:
+        "212921215842-eearqfhdoo7pbmf7d945hqu6h09nfro7.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL: "https://research.iitmandi.ac.in:8080/user/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -72,31 +69,25 @@ passport.deserializeUser(async (id, done) => {
 });
 
 // Controller actions
-// Redirect to Google for authentication
 const signin = passport.authenticate("google", { scope: ["profile", "email"] });
 
-// Callback route after authentication
 const signinCallback = passport.authenticate("google", {
   failureRedirect: "/login",
+  session: false, // Do not use sessions, we are using JWTs
 });
 
-// Dashboard route after successful authentication
 const dashboard = (req, res) => {
-  // Create JWT token and set cookie
-  const token = createToken(newUser.id);
+  const token = createToken(req.user.id);
   res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 
   res.status(201).json({
     message: "Login Successful!",
-    user: newUser,
+    user: req.user,
   });
 };
-
-
 
 module.exports = {
   signin,
   signinCallback,
   dashboard,
 };
-
