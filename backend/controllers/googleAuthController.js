@@ -3,7 +3,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 
-const maxAge = 3 * 24 * 60 * 60;
+const maxAge = 3 * 24 * 60 * 60; // 3 days
 
 // Function to create a JWT token
 const createToken = (id) => {
@@ -11,8 +11,6 @@ const createToken = (id) => {
     expiresIn: maxAge,
   });
 };
-
-let newUser;
 
 // Configure Passport to use Google OAuth 2.0 strategy
 passport.use(
@@ -51,7 +49,6 @@ passport.use(
             email: profile.emails[0].value,
           });
         }
-        newUser = user;
 
         done(null, user);
       } catch (err) {
@@ -87,10 +84,8 @@ const dashboard = (req, res) => {
   const token = createToken(req.user.id);
   res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
 
-  res.status(201).json({
-    message: "Login Successful!",
-    user: req.user,
-  });
+  // Redirect to dashboard after setting the cookie
+  res.redirect("https://research.iitmandi.ac.in/cca/Dashboard/index.html");
 };
 
 module.exports = {
