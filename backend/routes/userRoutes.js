@@ -1,8 +1,6 @@
 const express = require("express");
-const { getAllUsers, signUp, deleteAll, protectRoute, getUserProfile, login } = require("../controllers/userController");
+const { getAllUsers, signUp, deleteAll, getUserProfile, login } = require("../controllers/userController");
 const router = express.Router();
-const passport = require('passport');
-const { signin, signinCallback, dashboard } = require("../controllers/googleAuthController");
 const downloadData = require("../controllers/nodemailerController");
 
 //
