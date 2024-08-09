@@ -6,8 +6,6 @@
     <title>CCA IIT MANDI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css?family=Inter"
       rel="stylesheet"
@@ -22,11 +20,38 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 45px;
+        font-family: 'Poppins', sans-serif;
+        border: 1.73658px solid #20dc49;
+        border-radius: 8.68291px;
+        text-transform: none;
+        text-decoration: none;
+        background-color: white;
+        color: black;
+        transition: background-color 0.3s ease;
+        padding: 0 15px;
+      }
+      .btn:hover {
+        background-color: #f0f0f0;
+      }
+      .btn img {
+        margin-right: 10px;
+      }
+      .button-link {
+        color: inherit;
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <nav class="nav">
       <div class="left">
-        <img src="images/white logo.png" alt="" />
+        <img src="images/white logo.png" alt="CCA Logo" />
         <a target="_blank" href="https://www.iitmandi.ac.in">CCA Facility</a>
         <a href="LANDING PAGE/index.html">Home</a>
         <a
@@ -39,9 +64,23 @@
         >
       </div>
       <div class="right">
-        <a href="Login/index.html">Login</a>
-        <p>/</p>
-        <a href="Registration/index.html">Register</a>
+        <div class="row">
+          <div class="col-md-3">
+            <a
+              class="btn btn-outline-dark"
+              href="https://research.iitmandi.ac.in:8080/user/auth/google"
+              role="button"
+            >
+              <img
+                width="15px"
+                height="15px"
+                alt="Google sign-in"
+                src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000"
+              />
+              Sign in with Google
+            </a>
+          </div>
+        </div>
       </div>
     </nav>
     <div class="main">
@@ -51,6 +90,7 @@
             src="images/location.png"
             class="location-icon"
             style="filter: invert(100%)"
+            alt="Location Icon"
           />
           <p>IIT MANDI</p>
         </div>
@@ -68,13 +108,13 @@
             </p>
           </div>
           <div class="btn">
-            <button><a href="Login/index.html">FIND OUT MORE</a></button>
+            <a href="Login/index.html" class="button-link">FIND OUT MORE</a>
           </div>
         </div>
 
         <div class="socials">
-          <a href=""><img src="images/facebook.png" alt="" /></a>
-          <a href=""><img src="images/youtube.png" alt="" /></a>
+          <a href="https://www.facebook.com"><img src="images/facebook.png" alt="Facebook" /></a>
+          <a href="https://www.youtube.com"><img src="images/youtube.png" alt="YouTube" /></a>
         </div>
       </div>
     </div>
