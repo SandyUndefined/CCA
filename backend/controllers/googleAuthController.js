@@ -27,14 +27,17 @@ passport.use(
           where: { email: profile.emails[0].value },
         });
 
-        const firstName =
-          profile.name.givenName.length < 4
+        const firstName = profile.name?.givenName
+          ? profile.name.givenName.length < 4
             ? `${profile.name.givenName}___`
-            : profile.name.givenName;
-        const lastName =
-          profile.name.familyName.length < 4
+            : profile.name.givenName
+          : "UnknownFirstName"; // Fallback if givenName is undefined
+
+        const lastName = profile.name?.familyName
+          ? profile.name.familyName.length < 4
             ? `${profile.name.familyName}___`
-            : profile.name.familyName;
+            : profile.name.familyName
+          : "UnknownLastName";
 
         if (user) {
           // Update user information if already exists
