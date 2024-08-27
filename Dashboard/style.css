@@ -242,14 +242,22 @@ body {
 .graph {
   padding: 10px;
   border-radius: 30px;
-  background: var(--graphBg);
-  box-shadow: 13px 10px 30px 0px var(--graphdropx),
-    -13px -10px 30px 0px var(--graphdropy);
+  background: var(--graphBg); /* Custom background color */
+  box-shadow: 13px 10px 30px 0px var(--graphdropx), 
+              -13px -10px 30px 0px var(--graphdropy); /* Custom shadow effects */
   margin: 5px;
   margin-bottom: 20px;
-  height: 290px;
-  width: 480px;
+  height: 290px; /* Adjusted to accommodate the iframe */
+  width: 480px;  /* Fixed width to match the container */
 }
+
+.graph iframe {
+  border-radius: 20px; /* Rounded corners inside the graph container */
+  width: 100%; /* Take the full width of the parent .graph container */
+  height: 100%; /* Take the full height of the parent .graph container */
+  border: none; /* Remove the default border of iframe */
+}
+
 .info {
   font-family: poppins;
   text-align: left;
@@ -523,54 +531,4 @@ nav {
   background-color: #21cf47;
   border-radius: 50%;
   margin: auto 0;
-}
-#download{
-  width: 80%;
-  height: 80%;
-  margin: 10px 40px;
-  padding: 20px;
-  display: none;
-  justify-content:start;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-#download h2{
-  font-size: 2rem;
-  line-height: 3rem;
-}
-#download h4{
-margin-bottom: 10px;
-}
-#download p{
-  font-size: 1.3rem;
-  line-height: 2.3rem;
-  color: rgb(115, 202, 115);
-
-}
-#download ul li{
-  font-size: 1.112rem;
-  line-height: 2.112rem;
-  list-style: none;
-}
-#download_btn{
-  background-color: rgb(115, 202, 115);
-  width: 13rem;
-  height: 3.5rem;
-  border: none;
-  margin: 20px 0;
-  box-shadow: 5px 4px 20px rgba(186, 185, 185, 0.25);
-  font-style: normal;
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 25px;
-  border-radius: 2px;
-  color: #fff;
-}
-#download_btn:hover{
-  cursor: pointer;
-  transform: scale(1.02);
-  transition: 0.7s ease;
-}
-#download span{
-  font-size: 0.8rem;
 }

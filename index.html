@@ -25,22 +25,25 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        height: 45px;
+        height: 40px; /* Reduced height */
         font-family: 'Poppins', sans-serif;
-        border: 1.73658px solid #20dc49;
-        border-radius: 8.68291px;
+        border: 1.5px solid #20dc49;
+        border-radius: 8px;
         text-transform: none;
         text-decoration: none;
         background-color: white;
         color: black;
         transition: background-color 0.3s ease;
-        padding: 0 15px;
+        padding: 0 10px; /* Reduced padding */
+        font-size: 14px; /* Reduced font size */
       }
       .btn:hover {
         background-color: #f0f0f0;
       }
       .btn img {
-        margin-right: 10px;
+        width: 20px; /* Reduced size for the Google logo */
+        height: 20px;
+        margin-right: 8px; /* Adjusted spacing between the logo and text */
       }
       .button-link {
         color: inherit;
@@ -68,12 +71,11 @@
           <div class="col-md-3">
             <a
               class="btn btn-outline-dark"
+              style="margin-top: 20px;"
               href="https://research.iitmandi.ac.in:8080/user/auth/google"
               role="button"
             >
               <img
-                width="15px"
-                height="15px"
                 alt="Google sign-in"
                 src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000"
               />
