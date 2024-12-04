@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Empowerment</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.highlight {
+    color: #007BFF;
+}
+
+p {
+    color: #555;
+    margin: 10px 0;
+}
+
+.tab-container {
+    margin-top: 20px;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: #f0f0f0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    font-size: 1rem;
+}
+
+.tab-btn.active {
+    background: #007BFF;
+    color: #fff;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+h2 {
+    color: #007BFF;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.section {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+h2 {
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #555;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+}
+
+p {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Growing by <span class="highlight">Plant Empowerment</span></h1>
+        <p>
+            Growing by Plant Empowerment focuses on achieving an optimal growth climate with low energy costs by using 
+            partly existing and partly new techniques based on the energy and moisture balances of the greenhouse, using 
+            plant knowledge and physical principles.
+        </p>
+        <p>
+            These simulation/calculation models are developed by LetsGrow.com.
+        </p>
+
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="1">Moisture discharge</button>
+                <button class="tab-btn" data-tab="2">Moisture transport</button>
+                <button class="tab-btn" data-tab="3">Energy consumption</button>
+                <button class="tab-btn" data-tab="4">Energy screens</button>
+                <button class="tab-btn" data-tab="5">Ventilation rate</button>
+            </div>
+            <div class="tab-content active" id="tab-1">
+                <h2>Moisture discharge</h2>
+                <p>
+                    Injection of outdoor air by fans is a controlled way of ventilation and thus discharge of moisture. 
+                    This model shows how much moisture can be exhausted depending on outside conditions and fan capacity.
+                </p>
+                <div class="grid-container">
+                <!-- Outside Section -->
+                <div class="section">
+                    <h2>Outside</h2>
+                    <label>Temp: <span id="outside-temp-value">18</span>°C</label>
+                    <input id="outside-temp" type="range" min="0" max="40" value="18">
+
+                    <label>RH: <span id="outside-rh-value">70</span>%</label>
+                    <input id="outside-rh" type="range" min="0" max="100" value="70">
+
+                    <p>Absolute Humidity AH: <span id="outside-ah">9.04</span> g/kg</p>
+                </div>
+
+                <!-- Inside Section -->
+                <div class="section">
+                    <h2>Inside</h2>
+                    <label>Temp: <span id="inside-temp-value">20</span>°C</label>
+                    <input id="inside-temp" type="range" min="0" max="40" value="20">
+
+                    <label>RH: <span id="inside-rh-value">85</span>%</label>
+                    <input id="inside-rh" type="range" min="0" max="100" value="85">
+
+                    <p>Absolute Humidity AH: <span id="inside-ah">12.47</span> g/kg</p>
+                </div>
+
+                <!-- Injection Fan Section -->
+                <div class="section">
+                    <h2>Injection Fan</h2>
+                    <label>Flow: <span id="fan-flow-value">5</span> m³/m²·hour</label>
+                    <input id="fan-flow" type="range" min="1" max="20" value="5">
+                </div>
+
+                <!-- Moisture Exhaust Section -->
+                <div class="section">
+                    <h2>Moisture Exhaust</h2>
+                    <p>Moisture exhaust: <span id="moisture-exhaust">20.4</span> g/m²·hour</p>
+                </div>
+                </div>
+            </div>
+            <div class="tab-content" id="tab-2">
+                <h2>Moisture transport</h2>
+                <p>
+                    To prevent moisture accumulation in the crop, water vapour must be moved upwards from the plants to 
+                    the roof of the greenhouse. This model shows that diffusion of water vapor in still air causes only 
+                    very little moisture transport and that this is strongly promoted by air movement.
+                </p>
+                <div class="grid-container">
+                <!-- Inside Section -->
+                <div class="section">
+                    <h2>Inside</h2>
+                    <label>Temp: <span id="inside-temp-value">20</span>°C</label>
+                    <input id="inside-temp" type="range" min="0" max="40" value="20">
+
+                    <label>RH: <span id="inside-rh-value">85</span>%</label>
+                    <input id="inside-rh" type="range" min="0" max="100" value="85">
+
+                    <p>Absolute Humidity AH: <span id="inside-ah">12.47</span> g/kg</p>
+                </div>
+
+                <!-- Crop Conditions Section -->
+                <div class="section">
+                    <h2>Conditions in the Crop</h2>
+                    <label>Temp: <span id="crop-temp-value">20</span>°C</label>
+                    <input id="crop-temp" type="range" min="0" max="40" value="20">
+
+                    <label>RH: <span id="crop-rh-value">95</span>%</label>
+                    <input id="crop-rh" type="range" min="0" max="100" value="95">
+
+                    <p>Absolute Humidity AH: <span id="crop-ah">13.93</span> g/kg</p>
+                </div>
+
+                <!-- Fan Capacity Section -->
+                <div class="section">
+                    <h2>Fan Capacity</h2>
+                    <label>Average Flow: <span id="fan-flow-value">5</span> m³/m²·hour</label>
+                    <input id="fan-flow" type="range" min="1" max="20" value="5">
+                </div>
+
+                <!-- Moist Transport Section -->
+                <div class="section">
+                    <h2>Moist Transport Through the Crop</h2>
+                    <label>Plant Height: <span id="plant-height-value">1</span> m</label>
+                    <input id="plant-height" type="range" min="0.5" max="5" step="0.1" value="1">
+
+                    <p>Diffusion: <span id="diffusion">0.346</span> g/m²·hour</p>
+                    <p>Air Movement: <span id="air-movement">0.14</span> cm/sec</p>
+                    <p>Total Moist Transport: <span id="total-transport">83.32</span> g/m²·hour</p>
+                </div>
+            </div>
+            </div>
+            <div class="tab-content" id="tab-3">
+                <h2>Energy consumption</h2>
+                <p>
+                    The energy consumption of a greenhouse depends on the outside conditions and the insulation factor 
+                    (u-value) of the greenhouse.
+                </p>
+                <div class="grid-container">
+                <!-- Outside Section -->
+                <div class="section">
+                    <h3>Outside</h3>
+                    <label for="outside-temp">Temp: <span id="outside-temp-value">25</span>°C</label>
+                    <input id="outside-temp" type="range" min="0" max="50" value="25" />
+                </div>
+
+                <!-- Greenhouse Section -->
+                <div class="section">
+                    <h3>Greenhouse</h3>
+                    <label for="u-value">Estimated U-value: <span id="u-value-value">28</span> W/m².K</label>
+                    <input id="u-value" type="range" min="0" max="100" value="28" />
+                </div>
+
+                <!-- Inside Section -->
+                <div class="section">
+                    <h3>Inside</h3>
+                    <label for="inside-temp">Temp: <span id="inside-temp-value">30</span>°C</label>
+                    <input id="inside-temp" type="range" min="0" max="50" value="30" />
+                </div>
+
+                <!-- Crop Section -->
+                <div class="section">
+                    <h3>Crop</h3>
+                    <label for="crop-evaporation">Crop evaporation: <span id="crop-evaporation-value">50</span> g/m²·hour</label>
+                    <input id="crop-evaporation" type="range" min="0" max="100" value="50" />
+                </div>
+
+                <!-- Results Section -->
+                <div class="section energy-results">
+                    <h3>Results</h3>
+                    <p>Energy consumption: <span id="energy-consumption">48.74</span> W/m²</p>
+                    <p>Gas consumption: <span id="gas-consumption">55.4</span> m³/ha·hour</p>
+                </div>
+            </div>
+
+            </div>
+            <div class="tab-content" id="tab-4">
+                <h2>Energy screens</h2>
+                <p>
+                    Effective use of energy screens is an important means of reducing energy demand. This calculation 
+                    model focuses on the energy aspect. However, the use of single or multiple screens also provides a 
+                    better and more uniform greenhouse climate due to less heat emission and cold fall.
+                </p>
+            </div>
+            <div class="tab-content" id="tab-5">
+                <h2>Ventilation rate</h2>
+                <p>
+                    Ventilation affects the energy balance, the moisture balances and the CO2 emissions of the greenhouse. 
+                    This calculation model demonstrates the influence of greenhouse temperature and RH on the required 
+                    ventilation rate and shows how a better choice of target values for temperature and humidity can 
+                    substantially improve CO2 efficiency.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    // Tab Switching Logic
+    const buttons = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            // Remove active class from all buttons and contents
+            buttons.forEach((btn) => btn.classList.remove("active"));
+            contents.forEach((content) => content.classList.remove("active"));
+
+            // Add active class to clicked button and corresponding content
+            button.classList.add("active");
+            const tabId = button.getAttribute("data-tab");
+            document.getElementById(`tab-${tabId}`).classList.add("active");
+        });
+    });
+
+    // Attach event listeners to sliders
+    const sliders = document.querySelectorAll("input[type='range']");
+    sliders.forEach((slider) => {
+        slider.addEventListener("input", updateValues);
+    });
+
+    // Initialize values on page load
+    updateValues();
+});
+
+// Function to calculate Absolute Humidity (AH)
+function calculateAH(temp, rh) {
+    const e = Math.exp((17.67 * temp) / (temp + 243.5));
+    return ((6.112 * e * rh * 2.1674) / (273.15 + temp)).toFixed(2);
+}
+
+// Function to calculate Moisture Exhaust
+function calculateMoistureExhaust(outsideAH, insideAH, fanFlow) {
+    return ((insideAH - outsideAH) * fanFlow).toFixed(2);
+}
+
+// Function to calculate Moist Transport
+function calculateMoistTransport(cropAH, insideAH, flowRate, plantHeight) {
+    const diffusion = (cropAH - insideAH) * 0.01; // Simplified formula
+    const airMovement = flowRate * 0.028; // Simplified formula
+    const totalTransport = (diffusion + airMovement * plantHeight).toFixed(2);
+
+    return {
+        diffusion: diffusion.toFixed(3),
+        airMovement: airMovement.toFixed(3),
+        totalTransport,
+    };
+}
+
+// Update all values dynamically
+function updateValues() {
+    // Fetch input values
+    const outsideTemp = parseInt(document.getElementById("outside-temp").value);
+    const outsideRH = parseInt(document.getElementById("outside-rh").value);
+    const insideTemp = parseInt(document.getElementById("inside-temp").value);
+    const insideRH = parseInt(document.getElementById("inside-rh").value);
+    const cropTemp = parseInt(document.getElementById("crop-temp").value);
+    const cropRH = parseInt(document.getElementById("crop-rh").value);
+    const fanFlow = parseFloat(document.getElementById("fan-flow").value);
+    const plantHeight = parseFloat(document.getElementById("plant-height").value);
+
+    // Display slider values dynamically
+    document.getElementById("outside-temp-value").textContent = outsideTemp;
+    document.getElementById("outside-rh-value").textContent = outsideRH;
+    document.getElementById("inside-temp-value").textContent = insideTemp;
+    document.getElementById("inside-rh-value").textContent = insideRH;
+    document.getElementById("crop-temp-value").textContent = cropTemp;
+    document.getElementById("crop-rh-value").textContent = cropRH;
+    document.getElementById("fan-flow-value").textContent = fanFlow;
+    document.getElementById("plant-height-value").textContent = plantHeight;
+
+    // Calculate Absolute Humidity (AH)
+    const outsideAH = calculateAH(outsideTemp, outsideRH);
+    const insideAH = calculateAH(insideTemp, insideRH);
+    const cropAH = calculateAH(cropTemp, cropRH);
+
+    // Update AH displays
+    document.getElementById("outside-ah").textContent = outsideAH;
+    document.getElementById("inside-ah").textContent = insideAH;
+    document.getElementById("crop-ah").textContent = cropAH;
+
+    // Calculate and update Moisture Exhaust
+    const moistureExhaust = calculateMoistureExhaust(outsideAH, insideAH, fanFlow);
+    document.getElementById("moisture-exhaust").textContent = moistureExhaust;
+
+    // Calculate and update Moist Transport through the crop
+    const { diffusion, airMovement, totalTransport } = calculateMoistTransport(
+        cropAH,
+        insideAH,
+        fanFlow,
+        plantHeight
+    );
+
+    document.getElementById("diffusion").textContent = diffusion;
+    document.getElementById("air-movement").textContent = airMovement;
+    document.getElementById("total-transport").textContent = totalTransport;
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const sliders = [
+    { sliderId: "oTempEnergyDemandSlider", inputId: "oTempEnergyDemand" },
+    { sliderId: "kValueEnergyDemandSlider", inputId: "kValueEnergyDemand" },
+    { sliderId: "iTempEnergyDemandSlider", inputId: "iTempEnergyDemand" },
+    { sliderId: "cropEnergyDemandSlider", inputId: "cropEnergyDemand" },
+  ];
+
+  sliders.forEach(({ sliderId, inputId }) => {
+    const slider = document.getElementById(sliderId);
+    const input = document.getElementById(inputId);
+
+    // Sync slider and input values
+    slider.addEventListener("input", () => {
+      input.value = slider.value;
+      updateEnergyConsumption();
+    });
+
+    input.addEventListener("input", () => {
+      slider.value = input.value;
+      updateEnergyConsumption();
+    });
+  });
+
+  function updateEnergyConsumption() {
+    const oTemp = parseFloat(document.getElementById("oTempEnergyDemand").value);
+    const iTemp = parseFloat(document.getElementById("iTempEnergyDemand").value);
+    const kValue = parseFloat(document.getElementById("kValueEnergyDemand").value);
+    const cropEvaporation = parseFloat(document.getElementById("cropEnergyDemand").value);
+
+    // Simplified calculations
+    const energyConsumption = ((iTemp - oTemp) * kValue).toFixed(2);
+    const gasConsumption = (energyConsumption * cropEvaporation * 0.01).toFixed(2);
+
+    document.getElementById("energyConsumption").textContent = energyConsumption;
+    document.getElementById("gasConsumption").textContent = gasConsumption;
+  }
+
+  updateEnergyConsumption();
+});
+    </script>
+</body>
+</html>

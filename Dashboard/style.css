@@ -279,7 +279,7 @@ nav {
 }
 
 .left {
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
