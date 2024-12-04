@@ -332,152 +332,215 @@ p {
                     ventilation rate and shows how a better choice of target values for temperature and humidity can 
                     substantially improve CO2 efficiency.
                 </p>
+                <div class="grid-container">
+                <!-- Outside Section -->
+                <div class="section">
+                    <h2>Outside</h2>
+                    <label>Temp: <span id="vent-outside-temp-value">25</span>°C</label>
+                    <input id="vent-outside-temp" type="range" min="0" max="40" value="25">
+
+                    <label>RH: <span id="vent-outside-rh-value">70</span>%</label>
+                    <input id="vent-outside-rh" type="range" min="0" max="100" value="70">
+
+                    <p>Absolute Humidity AH: <span id="vent-outside-ah">9.04</span> g/kg</p>
+                </div>
+
+                <!-- Inside Section -->
+                <div class="section">
+                    <h2>Inside</h2>
+                    <label>Temp: <span id="vent-inside-temp-value">20</span>°C</label>
+                    <input id="vent-inside-temp" type="range" min="0" max="40" value="20">
+
+                    <label>RH: <span id="vent-inside-rh-value">85</span>%</label>
+                    <input id="vent-inside-rh" type="range" min="0" max="100" value="85">
+
+                    <p>Absolute Humidity AH: <span id="vent-inside-ah">12.47</span> g/kg</p>
+                </div>
+
+                <!-- Ventilation Rate Section -->
+                <div class="section">
+                    <h2>Ventilation Settings</h2>
+                    <label>Ventilation Rate: <span id="vent-rate-value">10</span> m³/m²·hour</label>
+                    <input id="vent-rate" type="range" min="1" max="20" value="10">
+
+                    <label>CO2 Target: <span id="co2-target-value">400</span> ppm</label>
+                    <input id="co2-target" type="range" min="300" max="800" value="400">
+                </div>
+
+                <!-- Results Section -->
+                <div class="section">
+                    <h2>Ventilation Results</h2>
+                    <p>Required Ventilation Rate: <span id="required-vent-rate">12.5</span> m³/m²·hour</p>
+                    <p>CO2 Efficiency: <span id="co2-efficiency">85.2</span>%</p>
+                </div>
+            </div>
             </div>
         </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-    // Tab Switching Logic
-    const buttons = document.querySelectorAll(".tab-btn");
-    const contents = document.querySelectorAll(".tab-content");
+    document.addEventListener("DOMContentLoaded", () => {
+        // Tab Switching Logic
+        const buttons = document.querySelectorAll(".tab-btn");
+        const contents = document.querySelectorAll(".tab-content");
 
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-            // Remove active class from all buttons and contents
-            buttons.forEach((btn) => btn.classList.remove("active"));
-            contents.forEach((content) => content.classList.remove("active"));
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                contents.forEach((content) => content.classList.remove("active"));
 
-            // Add active class to clicked button and corresponding content
-            button.classList.add("active");
-            const tabId = button.getAttribute("data-tab");
-            document.getElementById(`tab-${tabId}`).classList.add("active");
-        });
-    });
-
-    // Attach event listeners to sliders
-    const sliders = document.querySelectorAll("input[type='range']");
-    sliders.forEach((slider) => {
-        slider.addEventListener("input", updateValues);
-    });
-
-    // Initialize values on page load
-    updateValues();
-});
-
-// Function to calculate Absolute Humidity (AH)
-function calculateAH(temp, rh) {
-    const e = Math.exp((17.67 * temp) / (temp + 243.5));
-    return ((6.112 * e * rh * 2.1674) / (273.15 + temp)).toFixed(2);
-}
-
-// Function to calculate Moisture Exhaust
-function calculateMoistureExhaust(outsideAH, insideAH, fanFlow) {
-    return ((insideAH - outsideAH) * fanFlow).toFixed(2);
-}
-
-// Function to calculate Moist Transport
-function calculateMoistTransport(cropAH, insideAH, flowRate, plantHeight) {
-    const diffusion = (cropAH - insideAH) * 0.01; // Simplified formula
-    const airMovement = flowRate * 0.028; // Simplified formula
-    const totalTransport = (diffusion + airMovement * plantHeight).toFixed(2);
-
-    return {
-        diffusion: diffusion.toFixed(3),
-        airMovement: airMovement.toFixed(3),
-        totalTransport,
-    };
-}
-
-// Update all values dynamically
-function updateValues() {
-    // Fetch input values
-    const outsideTemp = parseInt(document.getElementById("outside-temp").value);
-    const outsideRH = parseInt(document.getElementById("outside-rh").value);
-    const insideTemp = parseInt(document.getElementById("inside-temp").value);
-    const insideRH = parseInt(document.getElementById("inside-rh").value);
-    const cropTemp = parseInt(document.getElementById("crop-temp").value);
-    const cropRH = parseInt(document.getElementById("crop-rh").value);
-    const fanFlow = parseFloat(document.getElementById("fan-flow").value);
-    const plantHeight = parseFloat(document.getElementById("plant-height").value);
-
-    // Display slider values dynamically
-    document.getElementById("outside-temp-value").textContent = outsideTemp;
-    document.getElementById("outside-rh-value").textContent = outsideRH;
-    document.getElementById("inside-temp-value").textContent = insideTemp;
-    document.getElementById("inside-rh-value").textContent = insideRH;
-    document.getElementById("crop-temp-value").textContent = cropTemp;
-    document.getElementById("crop-rh-value").textContent = cropRH;
-    document.getElementById("fan-flow-value").textContent = fanFlow;
-    document.getElementById("plant-height-value").textContent = plantHeight;
-
-    // Calculate Absolute Humidity (AH)
-    const outsideAH = calculateAH(outsideTemp, outsideRH);
-    const insideAH = calculateAH(insideTemp, insideRH);
-    const cropAH = calculateAH(cropTemp, cropRH);
-
-    // Update AH displays
-    document.getElementById("outside-ah").textContent = outsideAH;
-    document.getElementById("inside-ah").textContent = insideAH;
-    document.getElementById("crop-ah").textContent = cropAH;
-
-    // Calculate and update Moisture Exhaust
-    const moistureExhaust = calculateMoistureExhaust(outsideAH, insideAH, fanFlow);
-    document.getElementById("moisture-exhaust").textContent = moistureExhaust;
-
-    // Calculate and update Moist Transport through the crop
-    const { diffusion, airMovement, totalTransport } = calculateMoistTransport(
-        cropAH,
-        insideAH,
-        fanFlow,
-        plantHeight
-    );
-
-    document.getElementById("diffusion").textContent = diffusion;
-    document.getElementById("air-movement").textContent = airMovement;
-    document.getElementById("total-transport").textContent = totalTransport;
-}
-
-// Function to update energy consumption dynamically
-function updateEnergyConsumption() {
-    const oTemp = parseFloat(document.getElementById("oTempEnergyDemand").value);
-    const iTemp = parseFloat(document.getElementById("iTempEnergyDemand").value);
-    const kValue = parseFloat(document.getElementById("kValueEnergyDemand").value);
-    const cropEvaporation = parseFloat(document.getElementById("cropEnergyDemand").value);
-
-    // Simplified calculations
-    const energyConsumption = ((iTemp - oTemp) * kValue).toFixed(2);
-    const gasConsumption = (energyConsumption * cropEvaporation * 0.01).toFixed(2);
-
-    document.getElementById("energyConsumption").textContent = energyConsumption;
-    document.getElementById("gasConsumption").textContent = gasConsumption;
-}
-
-// Sync sliders and inputs for energy consumption calculations
-document.addEventListener("DOMContentLoaded", () => {
-    const sliders = [
-        { sliderId: "oTempEnergyDemandSlider", inputId: "oTempEnergyDemand" },
-        { sliderId: "kValueEnergyDemandSlider", inputId: "kValueEnergyDemand" },
-        { sliderId: "iTempEnergyDemandSlider", inputId: "iTempEnergyDemand" },
-        { sliderId: "cropEnergyDemandSlider", inputId: "cropEnergyDemand" },
-    ];
-
-    sliders.forEach(({ sliderId, inputId }) => {
-        const slider = document.getElementById(sliderId);
-        const input = document.getElementById(inputId);
-
-        // Sync slider and input values
-        slider.addEventListener("input", () => {
-            input.value = slider.value;
-            updateEnergyConsumption();
+                button.classList.add("active");
+                const tabId = button.getAttribute("data-tab");
+                document.getElementById(`tab-${tabId}`).classList.add("active");
+            });
         });
 
-        input.addEventListener("input", () => {
-            slider.value = input.value;
-            updateEnergyConsumption();
+        // Attach event listeners to sliders
+        const sliders = document.querySelectorAll("input[type='range']");
+        sliders.forEach((slider) => {
+            slider.addEventListener("input", updateValues);
         });
+
+        // Initialize values on page load
+        updateValues();
+        updateEnergyConsumption();
     });
-    updateEnergyConsumption();
-});
+
+    // Function to calculate Absolute Humidity (AH)
+    function calculateAH(temp, rh) {
+        const e = Math.exp((17.67 * temp) / (temp + 243.5));
+        return ((6.112 * e * rh * 2.1674) / (273.15 + temp)).toFixed(2);
+    }
+
+    // Function to calculate Moisture Exhaust
+    function calculateMoistureExhaust(outsideAH, insideAH, fanFlow) {
+        return ((insideAH - outsideAH) * fanFlow).toFixed(2);
+    }
+
+    // Function to calculate Moist Transport
+    function calculateMoistTransport(cropAH, insideAH, flowRate, plantHeight) {
+        const diffusion = (cropAH - insideAH) * 0.01; // Simplified formula
+        const airMovement = flowRate * 0.028; // Simplified formula
+        const totalTransport = (diffusion + airMovement * plantHeight).toFixed(2);
+
+        return {
+            diffusion: diffusion.toFixed(3),
+            airMovement: airMovement.toFixed(3),
+            totalTransport,
+        };
+    }
+
+    // Function to calculate Ventilation Rate
+    function calculateVentilationRate(tempDiff, rhDiff, co2Diff, targetValues) {
+        const baseVentilationRate = 10; // Base rate (simplified assumption)
+        const temperatureImpact = tempDiff * 0.5; // Temperature adjustment factor
+        const rhImpact = rhDiff * 0.3; // Humidity adjustment factor
+        const co2Impact = co2Diff * 0.2; // CO2 adjustment factor
+        const optimizedRate = baseVentilationRate + temperatureImpact + rhImpact + co2Impact;
+
+        return Math.min(optimizedRate, targetValues.maxRate).toFixed(2); // Ensure within max bounds
+    }
+
+    // Update all values dynamically
+    function updateValues() {
+        // Fetch input values
+        const outsideTemp = parseFloat(document.getElementById("outside-temp").value);
+        const outsideRH = parseFloat(document.getElementById("outside-rh").value);
+        const insideTemp = parseFloat(document.getElementById("inside-temp").value);
+        const insideRH = parseFloat(document.getElementById("inside-rh").value);
+        const cropTemp = parseFloat(document.getElementById("crop-temp").value);
+        const cropRH = parseFloat(document.getElementById("crop-rh").value);
+        const fanFlow = parseFloat(document.getElementById("fan-flow").value);
+        const plantHeight = parseFloat(document.getElementById("plant-height").value);
+
+        // Display slider values dynamically
+        document.getElementById("outside-temp-value").textContent = outsideTemp;
+        document.getElementById("outside-rh-value").textContent = outsideRH;
+        document.getElementById("inside-temp-value").textContent = insideTemp;
+        document.getElementById("inside-rh-value").textContent = insideRH;
+        document.getElementById("crop-temp-value").textContent = cropTemp;
+        document.getElementById("crop-rh-value").textContent = cropRH;
+        document.getElementById("fan-flow-value").textContent = fanFlow;
+        document.getElementById("plant-height-value").textContent = plantHeight;
+
+        // Calculate Absolute Humidity (AH)
+        const outsideAH = calculateAH(outsideTemp, outsideRH);
+        const insideAH = calculateAH(insideTemp, insideRH);
+        const cropAH = calculateAH(cropTemp, cropRH);
+
+        // Update AH displays
+        document.getElementById("outside-ah").textContent = outsideAH;
+        document.getElementById("inside-ah").textContent = insideAH;
+        document.getElementById("crop-ah").textContent = cropAH;
+
+        // Calculate and update Moisture Exhaust
+        const moistureExhaust = calculateMoistureExhaust(outsideAH, insideAH, fanFlow);
+        document.getElementById("moisture-exhaust").textContent = moistureExhaust;
+
+        // Calculate and update Moist Transport through the crop
+        const { diffusion, airMovement, totalTransport } = calculateMoistTransport(
+            cropAH,
+            insideAH,
+            fanFlow,
+            plantHeight
+        );
+
+        document.getElementById("diffusion").textContent = diffusion;
+        document.getElementById("air-movement").textContent = airMovement;
+        document.getElementById("total-transport").textContent = totalTransport;
+
+        // Update Ventilation Rate
+        updateVentilationRateValues();
+    }
+
+    // Update values dynamically for Ventilation Rate
+    function updateVentilationRateValues() {
+        const greenhouseTemp = parseFloat(document.getElementById("greenhouse-temp").value);
+        const greenhouseRH = parseFloat(document.getElementById("greenhouse-rh").value);
+        const co2Concentration = parseFloat(document.getElementById("co2-concentration").value);
+
+        const outsideTemp = parseFloat(document.getElementById("outside-temp").value);
+        const outsideRH = parseFloat(document.getElementById("outside-rh").value);
+        const outsideCO2 = parseFloat(document.getElementById("outside-co2").value);
+
+        // Display slider values dynamically
+        document.getElementById("greenhouse-temp-value").textContent = greenhouseTemp;
+        document.getElementById("greenhouse-rh-value").textContent = greenhouseRH;
+        document.getElementById("co2-concentration-value").textContent = co2Concentration;
+        document.getElementById("outside-temp-value").textContent = outsideTemp;
+        document.getElementById("outside-rh-value").textContent = outsideRH;
+        document.getElementById("outside-co2-value").textContent = outsideCO2;
+
+        // Calculate differences
+        const tempDiff = greenhouseTemp - outsideTemp;
+        const rhDiff = greenhouseRH - outsideRH;
+        const co2Diff = co2Concentration - outsideCO2;
+
+        // Target values
+        const targetValues = {
+            maxRate: 30, // Maximum allowable ventilation rate
+        };
+
+        // Calculate ventilation rate
+        const ventilationRate = calculateVentilationRate(tempDiff, rhDiff, co2Diff, targetValues);
+
+        // Update display
+        document.getElementById("ventilation-rate").textContent = ventilationRate;
+    }
+
+    // Function to update energy consumption dynamically
+    function updateEnergyConsumption() {
+        const oTemp = parseFloat(document.getElementById("oTempEnergyDemand").value);
+        const iTemp = parseFloat(document.getElementById("iTempEnergyDemand").value);
+        const kValue = parseFloat(document.getElementById("kValueEnergyDemand").value);
+        const cropEvaporation = parseFloat(document.getElementById("cropEnergyDemand").value);
+
+        const energyConsumption = ((iTemp - oTemp) * kValue).toFixed(2);
+        const gasConsumption = (energyConsumption * cropEvaporation * 0.01).toFixed(2);
+
+        document.getElementById("energyConsumption").textContent = energyConsumption;
+        document.getElementById("gasConsumption").textContent = gasConsumption;
+    }
     </script>
+
 </body>
 </html>
