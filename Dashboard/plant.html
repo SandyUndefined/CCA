@@ -280,6 +280,49 @@ p {
                     model focuses on the energy aspect. However, the use of single or multiple screens also provides a 
                     better and more uniform greenhouse climate due to less heat emission and cold fall.
                 </p>
+                <div class="grid-container">
+                <!-- Outside Section -->
+                <div class="section">
+                    <h2>Outside</h2>
+                    <label for="outside-temp">Temp: <span id="outside-temp-value">18</span>°C</label>
+                    <input id="outside-temp" type="range" min="0" max="40" value="18">
+                </div>
+
+                <!-- Inside Section -->
+                <div class="section">
+                    <h2>Inside</h2>
+                    <label for="inside-temp">Temp: <span id="inside-temp-value">20</span>°C</label>
+                    <input id="inside-temp" type="range" min="0" max="40" value="20">
+                </div>
+
+                <!-- Greenhouse Section -->
+                <div class="section">
+                    <h2>Greenhouse</h2>
+                    <label for="u-value">Estimated U-value: <span id="u-value-value">7</span> W/m²·K</label>
+                    <input id="u-value" type="range" min="0" max="20" value="7">
+
+                    <label for="screen1">Screen 1:</label>
+                    <select id="screen1">
+                        <option value="0">No screen</option>
+                        <option value="3">Screen 1 (3 W/m²·K)</option>
+                    </select>
+
+                    <label for="screen2">Screen 2:</label>
+                    <select id="screen2">
+                        <option value="0">No screen</option>
+                        <option value="3">Screen 2 (3 W/m²·K)</option>
+                    </select>
+
+                    <p>Resulting U-value: <span id="resulting-u-value">7.00</span> W/m²·K</p>
+                </div>
+
+                <!-- Energy Consumption Section -->
+                <div class="section">
+                    <h2>Energy Results</h2>
+                    <p>Energy consumption: <span id="energy-consumption">14.00</span> W/m²</p>
+                    <p>Gas consumption: <span id="gas-consumption">15.9</span> m³/ha·hour</p>
+                </div>
+                </div>
             </div>
             <div class="tab-content" id="tab-5">
                 <h2>Ventilation rate</h2>
@@ -393,31 +436,9 @@ function updateValues() {
     document.getElementById("air-movement").textContent = airMovement;
     document.getElementById("total-transport").textContent = totalTransport;
 }
-document.addEventListener("DOMContentLoaded", () => {
-  const sliders = [
-    { sliderId: "oTempEnergyDemandSlider", inputId: "oTempEnergyDemand" },
-    { sliderId: "kValueEnergyDemandSlider", inputId: "kValueEnergyDemand" },
-    { sliderId: "iTempEnergyDemandSlider", inputId: "iTempEnergyDemand" },
-    { sliderId: "cropEnergyDemandSlider", inputId: "cropEnergyDemand" },
-  ];
 
-  sliders.forEach(({ sliderId, inputId }) => {
-    const slider = document.getElementById(sliderId);
-    const input = document.getElementById(inputId);
-
-    // Sync slider and input values
-    slider.addEventListener("input", () => {
-      input.value = slider.value;
-      updateEnergyConsumption();
-    });
-
-    input.addEventListener("input", () => {
-      slider.value = input.value;
-      updateEnergyConsumption();
-    });
-  });
-
-  function updateEnergyConsumption() {
+// Function to update energy consumption dynamically
+function updateEnergyConsumption() {
     const oTemp = parseFloat(document.getElementById("oTempEnergyDemand").value);
     const iTemp = parseFloat(document.getElementById("iTempEnergyDemand").value);
     const kValue = parseFloat(document.getElementById("kValueEnergyDemand").value);
@@ -429,9 +450,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("energyConsumption").textContent = energyConsumption;
     document.getElementById("gasConsumption").textContent = gasConsumption;
-  }
+}
 
-  updateEnergyConsumption();
+// Sync sliders and inputs for energy consumption calculations
+document.addEventListener("DOMContentLoaded", () => {
+    const sliders = [
+        { sliderId: "oTempEnergyDemandSlider", inputId: "oTempEnergyDemand" },
+        { sliderId: "kValueEnergyDemandSlider", inputId: "kValueEnergyDemand" },
+        { sliderId: "iTempEnergyDemandSlider", inputId: "iTempEnergyDemand" },
+        { sliderId: "cropEnergyDemandSlider", inputId: "cropEnergyDemand" },
+    ];
+
+    sliders.forEach(({ sliderId, inputId }) => {
+        const slider = document.getElementById(sliderId);
+        const input = document.getElementById(inputId);
+
+        // Sync slider and input values
+        slider.addEventListener("input", () => {
+            input.value = slider.value;
+            updateEnergyConsumption();
+        });
+
+        input.addEventListener("input", () => {
+            slider.value = input.value;
+            updateEnergyConsumption();
+        });
+    });
+    updateEnergyConsumption();
 });
     </script>
 </body>
