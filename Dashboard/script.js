@@ -200,8 +200,8 @@ const showPannel = () => {
     const moon = document.getElementById('moon');
     const sun = document.getElementById('sun');
     const dashboard = document.getElementById("dashboard")
-    const dataRequest = document.getElementById("download")
-    dataRequest.style.display = "none"
+    // const dataDownloadElement = document.getElementById("download");
+    // dataDownloadElement.style.display = "none";
     dashboard.textContent = "Dashboards"
     poly1.style.display = "none"
     poly2.style.display = "none"
@@ -3244,6 +3244,24 @@ axios.get('https://research.iitmandi.ac.in:8196/sensor/polyhouse2/data')
             }
         });
     });
+function applyFilters() {
+  const selectedTitle = document.getElementById("title").value;
+  const xAxis = document.getElementById("xAxis").value;
+  const yAxis = document.getElementById("yAxis").value;
+  const timescale = document.getElementById("timescale").value;
+  const days = document.getElementById("days").value;
 
-
+  // Update all graph iframes
+  const iframes = document.querySelectorAll("iframe");
+  iframes.forEach((iframe) => {
+    const url = new URL(iframe.src);
+    if (selectedTitle)
+      url.searchParams.set("title", encodeURIComponent(selectedTitle));
+    if (xAxis) url.searchParams.set("xaxis", encodeURIComponent(xAxis));
+    if (yAxis) url.searchParams.set("yaxis", encodeURIComponent(yAxis));
+    if (timescale) url.searchParams.set("timescale", timescale);
+    if (days) url.searchParams.set("days", days);
+    iframe.src = url.toString(); // Update iframe source
+  });
+}
 

@@ -215,6 +215,36 @@
         </div>
       </div>
       <div id="Polyhouse1">
+          <!-- Filter Section -->
+        <div id="filters" class="filter-section">
+          <h3>Customize Graphs</h3>
+          <form id="filterForm">
+            <label for="title">Select Graph Title:</label>
+          <select id="title" name="title">
+            <option value="Temperature">Temperature</option>
+            <option value="Humidity">Humidity</option>
+            <option value="Soil Moisture">Soil Moisture</option>
+            <option value="Water Temperature">Water Temperature</option>
+            <option value="CO2">CO₂</option>
+            <option value="Light">Light</option>
+            <option value="Flow Sensor">Flow Sensor</option>
+          </select>
+
+            <label for="xAxis">X-Axis:</label>
+            <input type="text" id="xAxis" name="xAxis" placeholder="Enter X-Axis Label">
+
+            <label for="yAxis">Y-Axis:</label>
+            <input type="text" id="yAxis" name="yAxis" placeholder="Enter Y-Axis Label">
+
+            <label for="timescale">Timescale (minutes):</label>
+            <input type="number" id="timescale" name="timescale" min="1" value="60">
+
+            <label for="days">Days:</label>
+            <input type="number" id="days" name="days" min="1" value="3">
+
+            <button type="button" onclick="applyFilters()">Apply Filters</button>
+          </form>
+        </div>
         <div id="temp">
           <div class="heading">
             <h2>Temperature</h2>
